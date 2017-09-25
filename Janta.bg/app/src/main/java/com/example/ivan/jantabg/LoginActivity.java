@@ -20,6 +20,7 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         dataBase = DataBaseHelper.getHelper(this);
+        dataBase.test();
         loginButtonOnClickListener();
         registerButtonOnClickListener();
     }

@@ -120,4 +120,8 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         Cursor res = db.rawQuery(myRawQuery, null);
         return res;
     }
+
+    public void test(){
+        SQLiteDatabase db = this.getWritableDatabase();
+    }
 }
