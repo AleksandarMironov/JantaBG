@@ -19,8 +19,8 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        getSupportActionBar().hide();
         dataBase = DataBaseHelper.getHelper(this);
-        dataBase.test();
         loginButtonOnClickListener();
         registerButtonOnClickListener();
     }
@@ -35,7 +35,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String mail = email.getText().toString();
                 String pass = password.getText().toString();
-                if ((mail.matches("a-zA-Z1-9!@#$%^&*-_=+.")) && !mail.isEmpty() && !pass.isEmpty() && mail != null && pass != null) {
+                if ((!mail.matches("[;\"]")) && !pass.matches("[;\"]") &&!mail.isEmpty() && !pass.isEmpty() && mail != null && pass != null) {
                     if (dataBase.checkPassword(mail, pass)) {
                         Intent intent = new Intent("com.example.ivan.jantabg.OffersActivity");//goes to offersActivity
                         startActivity(intent);
