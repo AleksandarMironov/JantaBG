@@ -58,6 +58,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     public static synchronized DataBaseHelper getHelper (Context context){
         if(instance == null){
             instance = new DataBaseHelper(context);
+            instance.create();
         }
         return instance;
     }
@@ -79,20 +80,31 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     }
 
     public boolean checkPassword(String mail, String password){
-        //TODO
-        return true;
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        String myRawQuery = "SELECT " + T_USERS_COL_2  + " FROM " + TABLE_USERS + " WHERE " + T_USERS_COL_1 + " = \"" + mail + "\";";
+        String pass = db.rawQuery(myRawQuery, null).getString(0);
+        if(pass != null && password.equals(pass)){
+            return true;
+        }
+        return false;
     }
 
     public boolean addNewUser(String email, String password, String name, String city, String gender, String phone, String ltd){
+
         SQLiteDatabase db = this.getWritableDatabase();
+        String myRawQuery = "SELECT * FROM " + TABLE_USERS + " WHERE " + T_USERS_COL_1 + " = \"" + email + "\";";
+        if (db.rawQuery(myRawQuery, null).getCount() != 0){
+            return false;
+        }
         ContentValues contentValues = new ContentValues();
-        contentValues.put(T_OFFER_COL_1, email);
-        contentValues.put(T_OFFER_COL_2, password);
-        contentValues.put(T_OFFER_COL_3, name);
-        contentValues.put(T_OFFER_COL_4, city);
-        contentValues.put(T_OFFER_COL_5, gender);
-        contentValues.put(T_OFFER_COL_6, phone);
-        contentValues.put(T_OFFER_COL_7, ltd);
+        contentValues.put(T_USERS_COL_1, email);
+        contentValues.put(T_USERS_COL_2, password);
+        contentValues.put(T_USERS_COL_3, name);
+        contentValues.put(T_USERS_COL_4, city);
+        contentValues.put(T_USERS_COL_5, gender);
+        contentValues.put(T_USERS_COL_6, phone);
+        contentValues.put(T_USERS_COL_7, ltd);
 
         long b = db.insert(TABLE_USERS, null, contentValues);
 
@@ -104,24 +116,37 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
     public Cursor getUserData(String email){
         SQLiteDatabase db = this.getReadableDatabase();
-        String myRawQuery = ""; //TODO
-        Cursor res = db.rawQuery(myRawQuery, null);
-        return res;
+        String myRawQuery = "SELECT * FROM " + TABLE_USERS + " WHERE " + T_USERS_COL_1 + " = \"" + email + "\";";
+        return db.rawQuery(myRawQuery, null);
     }
 
-    public boolean addNewOffer(){
-        //TODO
+    public boolean addNewOffer(String title, String img, String description, double price, String email){
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(T_OFFER_COL_2, title);
+        contentValues.put(T_OFFER_COL_3, img);
+        contentValues.put(T_OFFER_COL_4, description);
+        contentValues.put(T_OFFER_COL_5, price);
+        contentValues.put(T_OFFER_COL_7, email);
+
+        long b = db.insert(TABLE_OFFER, null, contentValues);
+
+        if(b == -1){
+            return false;
+        }
         return true;
     }
 
-    public Cursor getOfferData(String id){
+    public Cursor getOfferData(String id){ //public Cursor[] getOfferData(String id){
         SQLiteDatabase db = this.getReadableDatabase();
-        String myRawQuery = ""; //TODO
-        Cursor res = db.rawQuery(myRawQuery, null);
-        return res;
+        String myRawQuery = "SELECT * FROM " + TABLE_OFFER + " WHERE " + T_OFFER_COL_1 + " = " + id + ";";
+        //Cursor offer = db.rawQuery(myRawQuery, null);
+        //return new Cursor [] {offer, getUserData(offer.getString(6))};
+        return db.rawQuery(myRawQuery, null);
     }
 
-    public void test(){
-        SQLiteDatabase db = this.getWritableDatabase();
+    public void create(){
+        SQLiteDatabase db = this.getWritableDatabase(); ///need this to create base ?! stupid!
     }
 }
