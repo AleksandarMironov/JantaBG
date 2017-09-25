@@ -1,9 +1,172 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.ivan.jantabg.RegisterActivity">
 
-</android.support.constraint.ConstraintLayout>
+    <TextView
+        android:id="@+id/txt_reg_reg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Register"
+        android:textSize="30dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <EditText
+        android:id="@+id/text_reg_mail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txt_reg_reg"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="15dp"
+        android:ems="10"
+        android:hint="E-mail"
+        android:inputType="textEmailAddress" />
+
+    <EditText
+        android:id="@+id/text_reg_pass"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/text_reg_mail"
+        android:layout_alignStart="@+id/text_reg_mail"
+        android:layout_below="@+id/text_reg_mail"
+        android:layout_marginTop="15dp"
+        android:ems="10"
+        android:hint="Password"
+        android:inputType="textPassword" />
+
+    <EditText
+        android:id="@+id/text_reg_pass2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/text_reg_pass"
+        android:layout_alignStart="@+id/text_reg_pass"
+        android:layout_below="@+id/text_reg_pass"
+        android:layout_marginTop="15dp"
+        android:ems="10"
+        android:hint="Repeat Password"
+        android:inputType="textPassword" />
+
+    <EditText
+        android:id="@+id/text_reg_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/text_reg_pass2"
+        android:layout_alignRight="@+id/text_reg_pass2"
+        android:layout_below="@+id/text_reg_pass2"
+        android:layout_marginTop="15dp"
+        android:ems="10"
+        android:hint="Username"
+        android:inputType="textPersonName" />
+
+    <EditText
+        android:id="@+id/text_reg_phone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/text_reg_name"
+        android:layout_alignRight="@+id/text_reg_name"
+        android:layout_below="@+id/text_reg_name"
+        android:layout_marginTop="15dp"
+        android:ems="10"
+        android:hint="Phone"
+        android:inputType="phone" />
+
+    <EditText
+        android:id="@+id/text_reg_address"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/text_reg_phone"
+        android:layout_alignStart="@+id/text_reg_phone"
+        android:layout_below="@+id/text_reg_phone"
+        android:layout_marginTop="15dp"
+        android:ems="10"
+        android:hint="Address"
+        android:inputType="textPostalAddress" />
+
+    <RadioGroup
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/radioGroup2"
+        android:orientation="horizontal"
+        android:layout_below="@+id/radioGroup"
+        android:layout_alignRight="@+id/text_reg_address"
+        android:layout_alignEnd="@+id/text_reg_address"
+        android:layout_alignLeft="@+id/text_reg_address"
+        android:layout_alignStart="@+id/text_reg_address">
+
+        <RadioButton
+            android:id="@+id/radio_reg_private"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/radio_reg_ltd"
+            android:layout_alignBottom="@+id/radio_reg_ltd"
+            android:layout_toEndOf="@+id/radio_reg_ltd"
+            android:layout_toRightOf="@+id/radio_reg_ltd"
+            android:layout_weight="1"
+            android:text="Private Person" />
+
+        <RadioButton
+            android:id="@+id/radio_reg_ltd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/text_reg_address"
+            android:layout_alignStart="@+id/text_reg_address"
+            android:layout_below="@+id/radioGroup"
+            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_weight="3.10"
+            android:text="LTD" />
+    </RadioGroup>
+
+    <RadioGroup
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="11dp"
+        android:orientation="horizontal"
+        android:layout_below="@+id/text_reg_address"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:id="@+id/radioGroup">
+
+
+        <RadioButton
+            android:id="@+id/radio_reg_other"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/radio_reg_female"
+
+            android:layout_weight="0.76"
+            android:text="Other" />
+
+        <RadioButton
+            android:id="@+id/radio_reg_male"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/text_reg_address"
+            android:layout_weight="1"
+            android:text="Male" />
+
+        <RadioButton
+            android:id="@+id/radio_reg_female"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/text_reg_address"
+            android:layout_weight="1"
+            android:text="Female" />
+
+    </RadioGroup>
+
+    <Button
+        android:id="@+id/btn_reg_register"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:text="register" />
+
+</RelativeLayout>
