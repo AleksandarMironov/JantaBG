@@ -24,7 +24,7 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name="OffersActivity">
+        <activity android:name=".OffersActivity">
             <intent-filter>
                 <action android:name="com.example.ivan.jantabg.OffersActivity" />
 

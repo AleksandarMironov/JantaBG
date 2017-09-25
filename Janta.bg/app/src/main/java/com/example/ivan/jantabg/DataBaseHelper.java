@@ -83,8 +83,13 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
         SQLiteDatabase db = this.getReadableDatabase();
         String myRawQuery = "SELECT " + T_USERS_COL_2  + " FROM " + TABLE_USERS + " WHERE " + T_USERS_COL_1 + " = \"" + mail + "\";";
-        String pass = db.rawQuery(myRawQuery, null).getString(0);
-        if(pass != null && password.equals(pass)){
+        Cursor cur = db.rawQuery(myRawQuery, null);
+        if(cur.getCount() == 0){
+            return false;
+        }
+        cur.moveToNext();
+        String pass = cur.getString(0);
+        if(password.equals(pass)){
             return true;
         }
         return false;

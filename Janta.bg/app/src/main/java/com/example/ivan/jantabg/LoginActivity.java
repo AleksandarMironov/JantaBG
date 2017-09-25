@@ -21,6 +21,7 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         getSupportActionBar().hide();
         dataBase = DataBaseHelper.getHelper(this);
+        dataBase.create();
         loginButtonOnClickListener();
         registerButtonOnClickListener();
     }
@@ -35,12 +36,14 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String mail = email.getText().toString();
                 String pass = password.getText().toString();
-                if ((!mail.matches("[;\"]")) && !pass.matches("[;\"]") &&!mail.isEmpty() && !pass.isEmpty() && mail != null && pass != null) {
-                    if (dataBase.checkPassword(mail, pass)) {
-                        Intent intent = new Intent("com.example.ivan.jantabg.OffersActivity");//goes to offersActivity
-                        startActivity(intent);
-                    }
+
+                if ((!mail.matches("[;\"]")) && !pass.matches("[;\"]") && !mail.isEmpty() && !pass.isEmpty() && dataBase.checkPassword(mail, pass)){
+
+                    Intent intent = new Intent("com.example.ivan.jantabg.OffersActivity");//goes to offersActivity
+                    startActivity(intent);
+
                 } else {
+
                     AlertDialog.Builder alert_builder = new AlertDialog.Builder(LoginActivity.this);
                     alert_builder.setMessage("Invalid username or password. If you haven't registered yet, please click on Register button to create your new account.")
                             .setCancelable(false)
@@ -50,13 +53,13 @@ public class LoginActivity extends AppCompatActivity {
                                     dialog.cancel();
                                 }
                             })
-                    .setNegativeButton("REGISTER", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            Intent intent = new Intent("com.example.ivan.jantabg.RegisterActivity");
-                            startActivity(intent); //goes directly to register screen
-                        }
-                    });
+                            .setNegativeButton("REGISTER", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    Intent intent = new Intent("com.example.ivan.jantabg.RegisterActivity");
+                                    startActivity(intent); //goes directly to register screen
+                                }
+                            });
                     AlertDialog ad = alert_builder.create();
                     ad.setTitle("ERROR");
                     ad.show();
