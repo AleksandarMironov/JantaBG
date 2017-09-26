@@ -4,32 +4,47 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/image_backgroud"
     tools:context="com.example.ivan.jantabg.RegisterActivity">
 
     <TextView
         android:id="@+id/txt_reg_reg"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="220sp"
+        android:layout_height="70sp"
         android:text="Register"
-        android:textSize="30dp"
+        android:textSize="50sp"
+        android:textStyle="bold"
+        android:fontFamily="serif"
+        android:textColor="#2c52aa"
+        android:layout_marginTop="25dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
 
     <EditText
         android:id="@+id/text_reg_mail"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/txt_reg_reg"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="15dp"
+        android:layout_width="310sp"
+        android:layout_height="30sp"
+        android:gravity="center"
+        android:background="@drawable/set_button_borders"
+        android:textStyle="bold"
+        android:textColorHint="#FFFFFF"
         android:ems="10"
-        android:hint="E-mail"
-        android:inputType="textEmailAddress" />
+        android:hint="Email Address"
+        android:textColor="#FFFFFF"
+        android:inputType="textEmailAddress"
+        android:layout_marginTop="11dp"
+        android:layout_below="@+id/txt_reg_reg"
+        android:layout_centerHorizontal="true" />
 
     <EditText
         android:id="@+id/text_reg_pass"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:background="@drawable/set_button_borders"
+        android:layout_width="310sp"
+        android:layout_height="30sp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:textColorHint="#FFFFFF"
+        android:textColor="#FFFFFF"
         android:layout_alignLeft="@+id/text_reg_mail"
         android:layout_alignStart="@+id/text_reg_mail"
         android:layout_below="@+id/text_reg_mail"
@@ -40,8 +55,13 @@
 
     <EditText
         android:id="@+id/text_reg_pass2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:background="@drawable/set_button_borders"
+        android:layout_width="310sp"
+        android:layout_height="30sp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:textColorHint="#FFFFFF"
+        android:textColor="#FFFFFF"
         android:layout_alignLeft="@+id/text_reg_pass"
         android:layout_alignStart="@+id/text_reg_pass"
         android:layout_below="@+id/text_reg_pass"
@@ -52,8 +72,13 @@
 
     <EditText
         android:id="@+id/text_reg_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:background="@drawable/set_button_borders"
+        android:layout_width="310sp"
+        android:layout_height="30sp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:textColorHint="#FFFFFF"
+        android:textColor="#FFFFFF"
         android:layout_alignEnd="@+id/text_reg_pass2"
         android:layout_alignRight="@+id/text_reg_pass2"
         android:layout_below="@+id/text_reg_pass2"
@@ -64,8 +89,13 @@
 
     <EditText
         android:id="@+id/text_reg_phone"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:background="@drawable/set_button_borders"
+        android:layout_width="310sp"
+        android:layout_height="30sp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:textColorHint="#FFFFFF"
+        android:textColor="#FFFFFF"
         android:layout_alignEnd="@+id/text_reg_name"
         android:layout_alignRight="@+id/text_reg_name"
         android:layout_below="@+id/text_reg_name"
@@ -76,8 +106,13 @@
 
     <EditText
         android:id="@+id/text_reg_address"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:background="@drawable/set_button_borders"
+        android:layout_width="310sp"
+        android:layout_height="30sp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:textColorHint="#FFFFFF"
+        android:textColor="#FFFFFF"
         android:layout_alignLeft="@+id/text_reg_phone"
         android:layout_alignStart="@+id/text_reg_phone"
         android:layout_below="@+id/text_reg_phone"
@@ -88,85 +123,119 @@
 
     <RadioGroup
         android:id="@+id/radioGroup_firm"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/text_reg_address"
-        android:layout_alignLeft="@+id/text_reg_address"
-        android:layout_alignRight="@+id/text_reg_address"
-        android:layout_alignStart="@+id/text_reg_address"
+        android:layout_width="310sp"
+        android:layout_height="30sp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:textColorHint="#FFFFFF"
+        android:textColor="#FFFFFF"
+        android:background="@drawable/set_button_borders"
+        android:orientation="horizontal"
+        android:layout_marginTop="11dp"
         android:layout_below="@+id/radioGroup_gender"
-        android:orientation="horizontal">
+        android:layout_alignLeft="@+id/text_reg_address"
+        android:layout_alignStart="@+id/text_reg_address">
 
         <RadioButton
             android:id="@+id/radio_reg_private"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="162dp"
+            android:textSize="18dp"
+            android:layout_height="30sp"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:textColorHint="#FFFFFF"
+            android:textColor="#FFFFFF"
             android:layout_alignBaseline="@+id/radio_reg_ltd"
             android:layout_alignBottom="@+id/radio_reg_ltd"
             android:layout_toEndOf="@+id/radio_reg_ltd"
+            android:buttonTint="#FFFFFF"
             android:layout_toRightOf="@+id/radio_reg_ltd"
-            android:layout_weight="1"
             android:text="Private Person" />
 
         <RadioButton
             android:id="@+id/radio_reg_ltd"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/text_reg_address"
-            android:layout_alignStart="@+id/text_reg_address"
+            android:layout_width="310sp"
+            android:textSize="18dp"
+            android:layout_height="30sp"
+            android:layout_alignEnd="@+id/radioGroup_firm"
+            android:layout_alignRight="@+id/radioGroup_firm"
             android:layout_below="@+id/radioGroup_gender"
-            android:layout_marginLeft="10dp"
-            android:layout_marginStart="10dp"
             android:layout_weight="3.10"
-            android:text="LTD" />
+            android:background="@drawable/set_button_borders"
+            android:buttonTint="#FFFFFF"
+            android:gravity="center"
+            android:text="LTD"
+            android:textColor="#FFFFFF"
+            android:textStyle="bold" />
+
     </RadioGroup>
 
     <RadioGroup
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="310sp"
+        android:layout_height="30sp"
         android:layout_marginTop="11dp"
         android:orientation="horizontal"
         android:layout_below="@+id/text_reg_address"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:id="@+id/radioGroup_gender">
+        android:id="@+id/radioGroup_gender"
+        android:layout_alignRight="@+id/radioGroup_firm"
+        android:layout_alignEnd="@+id/radioGroup_firm"
+        android:layout_alignLeft="@+id/radioGroup_firm"
+        android:layout_alignStart="@+id/radioGroup_firm">
 
 
         <RadioButton
             android:id="@+id/radio_reg_other"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:background="@drawable/set_button_borders"
+            android:layout_width="95dp"
+            android:layout_height="30sp"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:buttonTint="#47ff14"
+            android:textColor="#47ff14"
+            android:textSize="18dp"
             android:layout_toRightOf="@+id/radio_reg_female"
-
-            android:layout_weight="0.76"
             android:text="Other" />
 
         <RadioButton
             android:id="@+id/radio_reg_male"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:background="@drawable/set_button_borders"
+            android:layout_width="103dp"
+            android:layout_height="30sp"
+            android:buttonTint="#2c14ff"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:textSize="18dp"
+            android:textColor="#2c14ff"
             android:layout_below="@+id/text_reg_address"
-            android:layout_weight="1"
-            android:text="Male" />
+            android:text="Male"/>
 
         <RadioButton
             android:id="@+id/radio_reg_female"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:background="@drawable/set_button_borders"
+            android:layout_width="match_parent"
+            android:layout_height="30sp"
+            android:textStyle="bold"
+            android:textSize="18dp"
+            android:gravity="center"
+            android:buttonTint="#ff1fbc"
+            android:textColor="#ff1fbc"
             android:layout_below="@+id/text_reg_address"
-            android:layout_weight="1"
             android:text="Female" />
 
     </RadioGroup>
 
     <Button
         android:id="@+id/btn_reg_register"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:text="register" />
+        android:layout_width="310sp"
+        android:layout_height="40sp"
+        android:text="Register"
+        android:background="@drawable/button_design"
+        android:textSize="23dp"
+        android:fontFamily="serif"
+        android:textStyle="bold"
+        android:layout_below="@+id/radioGroup_firm"
+        android:layout_alignLeft="@+id/radioGroup_firm"
+        android:layout_alignStart="@+id/radioGroup_firm"
+        android:layout_marginTop="10dp" />
 
 </RelativeLayout>

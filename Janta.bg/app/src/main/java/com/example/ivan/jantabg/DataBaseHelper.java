@@ -122,6 +122,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     public Cursor getUserData(String email){
         SQLiteDatabase db = this.getReadableDatabase();
         String myRawQuery = "SELECT * FROM " + TABLE_USERS + " WHERE " + T_USERS_COL_1 + " = \"" + email + "\";";
+        //add and user offers info - ako ima vreme
         return db.rawQuery(myRawQuery, null);
     }
 
