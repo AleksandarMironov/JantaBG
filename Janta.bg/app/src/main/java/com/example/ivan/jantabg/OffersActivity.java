@@ -1,10 +1,16 @@
 package com.example.ivan.jantabg;
 
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.Gravity;
 import android.view.View;
+import android.widget.Button;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.example.ivan.jantabg.MyRecyclerViewAdapter.ItemClickListener;
@@ -14,11 +20,13 @@ import java.util.ArrayList;
 public class OffersActivity extends AppCompatActivity implements ItemClickListener {
 
     MyRecyclerViewAdapter adapter;
+    private Button btnAction;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_offers);
+        drawerDropMenucreator(); //metod menu
 
         // data to populate the RecyclerView with
         ArrayList<String> animalNames = new ArrayList<>();
@@ -47,7 +55,7 @@ public class OffersActivity extends AppCompatActivity implements ItemClickListen
         animalNames.add("guma");
         animalNames.add("druga janta");
 
-        // set up the RecyclerView
+         //set up the RecyclerView
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.my_recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         adapter = new MyRecyclerViewAdapter(this, animalNames);
@@ -58,5 +66,26 @@ public class OffersActivity extends AppCompatActivity implements ItemClickListen
     @Override
     public void onItemClick(View view, int position) {
         Toast.makeText(this, "You clicked " + adapter.getItem(position) + " on row number " + position, Toast.LENGTH_SHORT).show();
+    }
+
+    public void drawerDropMenucreator() {
+        btnAction = (Button)findViewById(R.id.btnAction);
+        final DrawerLayout drawerLayout = (DrawerLayout)findViewById(R.id.dlContent);
+
+        //sl 2 reda ne murdat main screena pri izlizane na menuto
+        drawerLayout.setScrimColor(Color.TRANSPARENT);
+        drawerLayout.setStatusBarBackground(Color.TRANSPARENT);
+
+        //slagame fukcionalnost na butona
+        btnAction.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (drawerLayout.isDrawerOpen(Gravity.LEFT)) {
+                    drawerLayout.closeDrawer(Gravity.LEFT);
+                } else {
+                    drawerLayout.openDrawer(Gravity.LEFT);
+                }
+            }
+        });
     }
 }
