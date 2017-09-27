@@ -1,8 +1,11 @@
 package com.example.ivan.jantabg;
 
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -21,12 +24,14 @@ public class OffersActivity extends AppCompatActivity implements ItemClickListen
 
     MyRecyclerViewAdapter adapter;
     private Button btnAction;
+    private Button btnQuit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_offers);
         drawerDropMenucreator(); //metod menu
+        onQuitBtnClickListener();
 
         // data to populate the RecyclerView with
         ArrayList<String> animalNames = new ArrayList<>();
@@ -85,6 +90,37 @@ public class OffersActivity extends AppCompatActivity implements ItemClickListen
                 } else {
                     drawerLayout.openDrawer(Gravity.LEFT);
                 }
+            }
+        });
+    }
+
+    public void onQuitBtnClickListener(){
+        btnQuit = (Button) findViewById(R.id.btn_quit);
+        btnQuit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder a_builder = new AlertDialog.Builder(OffersActivity.this);
+                a_builder.setMessage("Do you want to Exit?")
+                        .setCancelable(false)
+                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                finish();
+                                Intent intent = new Intent(Intent.ACTION_MAIN);
+                                intent.addCategory(Intent.CATEGORY_HOME);
+                                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                startActivity(intent);
+                            }
+                        })
+                        .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.cancel();
+                            }
+                        });
+                AlertDialog alert = a_builder.create();
+                alert.setTitle("Quit");
+                alert.show();
             }
         });
     }
