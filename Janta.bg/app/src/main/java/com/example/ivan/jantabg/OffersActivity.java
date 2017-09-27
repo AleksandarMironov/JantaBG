@@ -26,6 +26,7 @@ public class OffersActivity extends AppCompatActivity implements ItemClickListen
     MyRecyclerViewAdapter adapter;
     private Button btnAction;
     private Button btnQuit;
+    private Button btnAddOffer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,10 +34,11 @@ public class OffersActivity extends AppCompatActivity implements ItemClickListen
         setContentView(R.layout.activity_offers);
         drawerDropMenucreator(); //metod menu
         onQuitBtnClickListener();
+        setOnAddOfferBtnClickListener();
 
         // data to populate the RecyclerView with
         ArrayList<String> animalNames = new ArrayList<>();
-        animalNames.add("Janta");
+        animalNames.add("add offer");
         animalNames.add("guma");
         animalNames.add("druga janta");
         animalNames.add("Janta");
@@ -71,6 +73,10 @@ public class OffersActivity extends AppCompatActivity implements ItemClickListen
 
     @Override
     public void onItemClick(View view, int position) {
+        if(position == 0){
+            Intent intent = new Intent("com.example.ivan.jantabg.AddOfferActivity");
+            startActivity(intent);
+        }
         Toast.makeText(this, "You clicked " + adapter.getItem(position) + " on row number " + position, Toast.LENGTH_SHORT).show();
         /*Intent intent = new Intent(""); <--- add offer details page here
         startActivity(intent);*/
@@ -126,6 +132,17 @@ public class OffersActivity extends AppCompatActivity implements ItemClickListen
                 AlertDialog alert = a_builder.create();
                 alert.setTitle("Quit");
                 alert.show();
+            }
+        });
+    }
+
+    public void setOnAddOfferBtnClickListener(){
+        btnAddOffer = (Button) findViewById(R.id.btn_add_item);
+        btnAddOffer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent("com.example.ivan.jantabg.AddOfferActivity");
+                startActivity(intent);
             }
         });
     }

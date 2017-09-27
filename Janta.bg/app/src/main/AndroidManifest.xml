@@ -13,7 +13,6 @@
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -27,6 +26,13 @@
         <activity android:name=".OffersActivity">
             <intent-filter>
                 <action android:name="com.example.ivan.jantabg.OffersActivity" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".AddOfferActivity">
+            <intent-filter>
+                <action android:name="com.example.ivan.jantabg.AddOfferActivity" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
