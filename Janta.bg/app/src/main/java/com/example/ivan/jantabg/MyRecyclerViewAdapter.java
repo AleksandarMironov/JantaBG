@@ -1,10 +1,12 @@
 package com.example.ivan.jantabg;
 
 import android.content.Context;
+import android.database.Cursor;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.Collections;
@@ -12,17 +14,17 @@ import java.util.List;
 
 public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAdapter.ViewHolder> {
 
-    private List<String> mData = Collections.emptyList(); // data to show
+    private Cursor mData; // data to show
     private LayoutInflater mInflater;
     private ItemClickListener mClickListener;
 
-    // data is passed into the constructor
-    public MyRecyclerViewAdapter(Context context, List<String> data) {
+    // data is passed into the constructor ///!!!
+    public MyRecyclerViewAdapter(Context context, Cursor offersData) {
         this.mInflater = LayoutInflater.from(context);
-        this.mData = data;
+        this.mData = offersData;
     }
 
-    // inflates the row layout from xml when needed
+    // inflates the row layout from xml when needed /// !!!
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = mInflater.inflate(R.layout.recyclerview_row, parent, false);
@@ -30,27 +32,35 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
         return viewHolder;
     }
 
-    // binds the data to the textview in each row
+    // binds the data to the textview in each row /// !!!
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        String animal = mData.get(position);
-        holder.myTextView.setText(animal);
+        mData.moveToPosition(position);
+        String title = mData.getString(1);
+        String price = mData.getString(2);
+        holder.title.setText(title);
+        holder.price.setText(price + "лв");
+        holder.img.setImageResource(R.drawable.empty); //will use ID of offer for this
     }
 
     // total number of rows
     @Override
     public int getItemCount() {
-        return mData.size();
+        return mData.getCount();
     }
 
 
-    // stores and recycles views as they are scrolled off screen
+    // stores and recycles views as they are scrolled off screen // !!!
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        public TextView myTextView;
+        public TextView title;
+        public TextView price;
+        public ImageView img;
 
         public ViewHolder(View itemView) {
             super(itemView);
-            myTextView = (TextView) itemView.findViewById(R.id.text_in_row);
+            title = (TextView) itemView.findViewById(R.id.text_in_row_title);
+            price = (TextView) itemView.findViewById(R.id.text_in_row_price);
+            img = (ImageView) itemView.findViewById(R.id.image_in_row);
             itemView.setOnClickListener(this);
         }
 
@@ -60,9 +70,10 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
         }
     }
 
-    // convenience method for getting data at click position
+    // method for getting id of offer at click position
     public String getItem(int id) {
-        return mData.get(id);
+        mData.moveToPosition(id);
+        return mData.getString(0);
     }
 
     // allows clicks events to be caught

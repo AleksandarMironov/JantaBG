@@ -2,6 +2,7 @@ package com.example.ivan.jantabg;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.support.v4.widget.DrawerLayout;
@@ -24,6 +25,7 @@ import java.util.ArrayList;
 public class OffersActivity extends AppCompatActivity implements ItemClickListener {
 
     MyRecyclerViewAdapter adapter;
+    DataBaseHelper db;
     private Button btnAction;
     private Button btnQuit;
     private Button btnAddOffer;
@@ -32,41 +34,18 @@ public class OffersActivity extends AppCompatActivity implements ItemClickListen
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_offers);
+        db = DataBaseHelper.getHelper(this);
         drawerDropMenucreator(); //metod menu
-        onQuitBtnClickListener();
+        setOnQuitBtnClickListener();
         setOnAddOfferBtnClickListener();
 
         // data to populate the RecyclerView with
-        ArrayList<String> animalNames = new ArrayList<>();
-        animalNames.add("add offer");
-        animalNames.add("guma");
-        animalNames.add("druga janta");
-        animalNames.add("Janta");
-        animalNames.add("guma");
-        animalNames.add("druga janta");
-        animalNames.add("Janta");
-        animalNames.add("guma");
-        animalNames.add("druga janta");
-        animalNames.add("Janta");
-        animalNames.add("guma");
-        animalNames.add("druga janta");
-        animalNames.add("Janta");
-        animalNames.add("guma");
-        animalNames.add("druga janta");
-        animalNames.add("Janta");
-        animalNames.add("guma");
-        animalNames.add("druga janta");
-        animalNames.add("Janta");
-        animalNames.add("guma");
-        animalNames.add("druga janta");
-        animalNames.add("Janta");
-        animalNames.add("guma");
-        animalNames.add("druga janta");
+        Cursor offersData = db.getOffers(); //id title price
 
          //set up the RecyclerView
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.my_recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        adapter = new MyRecyclerViewAdapter(this, animalNames);
+        adapter = new MyRecyclerViewAdapter(this, offersData);
         adapter.setClickListener(this);
         recyclerView.setAdapter(adapter);
     }
@@ -77,7 +56,7 @@ public class OffersActivity extends AppCompatActivity implements ItemClickListen
             Intent intent = new Intent("com.example.ivan.jantabg.AddOfferActivity");
             startActivity(intent);
         }
-        Toast.makeText(this, "You clicked " + adapter.getItem(position) + " on row number " + position, Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "You clicked offer id " + adapter.getItem(position) + " on row number " + position, Toast.LENGTH_SHORT).show();
         /*Intent intent = new Intent(""); <--- add offer details page here
         startActivity(intent);*/
     }
@@ -103,7 +82,7 @@ public class OffersActivity extends AppCompatActivity implements ItemClickListen
         });
     }
 
-    public void onQuitBtnClickListener(){
+    public void setOnQuitBtnClickListener(){
         btnQuit = (Button) findViewById(R.id.btn_quit);
         btnQuit.setOnClickListener(new View.OnClickListener() {
             @Override

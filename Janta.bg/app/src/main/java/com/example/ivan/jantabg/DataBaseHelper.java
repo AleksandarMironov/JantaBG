@@ -152,6 +152,12 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         return db.rawQuery(myRawQuery, null);
     }
 
+    public Cursor getOffers(){
+        SQLiteDatabase db = this.getReadableDatabase();
+        String myRawQuery = "SELECT " + T_OFFER_COL_1 + ", " + T_OFFER_COL_2 + ", " + T_OFFER_COL_5 +" FROM " + TABLE_OFFER + " ;";
+        return db.rawQuery(myRawQuery, null);
+    }
+
     public void create(){
         SQLiteDatabase db = this.getWritableDatabase(); ///need this to create base ?! stupid!
     }
