@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Gravity;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RelativeLayout;
@@ -71,6 +72,8 @@ public class OffersActivity extends AppCompatActivity implements ItemClickListen
     @Override
     public void onItemClick(View view, int position) {
         Toast.makeText(this, "You clicked " + adapter.getItem(position) + " on row number " + position, Toast.LENGTH_SHORT).show();
+        /*Intent intent = new Intent(""); <--- add offer details page here
+        startActivity(intent);*/
     }
 
     public void drawerDropMenucreator() {
@@ -104,12 +107,14 @@ public class OffersActivity extends AppCompatActivity implements ItemClickListen
                         .setCancelable(false)
                         .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                             @Override
-                            public void onClick(DialogInterface dialog, int which) {
+                            public void onClick(DialogInterface dialog, int which) { //activity is in background
                                 finish();
                                 Intent intent = new Intent(Intent.ACTION_MAIN);
                                 intent.addCategory(Intent.CATEGORY_HOME);
                                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                                 startActivity(intent);
+                                /*int pid = android.os.Process.myPid();=====> use this if you want to kill your activity. But its not a good one to do.
+                                android.os.Process.killProcess(pid);*/  //(black magic :) )
                             }
                         })
                         .setNegativeButton("No", new DialogInterface.OnClickListener() {
@@ -123,5 +128,14 @@ public class OffersActivity extends AppCompatActivity implements ItemClickListen
                 alert.show();
             }
         });
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) { // disable back button in offers activity
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            moveTaskToBack(false);
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
     }
 }

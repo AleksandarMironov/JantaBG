@@ -12,7 +12,7 @@ import java.util.List;
 
 public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAdapter.ViewHolder> {
 
-    private List<String> mData = Collections.emptyList();
+    private List<String> mData = Collections.emptyList(); // data to show
     private LayoutInflater mInflater;
     private ItemClickListener mClickListener;
 
