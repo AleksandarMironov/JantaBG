@@ -15,6 +15,7 @@ import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
@@ -26,7 +27,7 @@ public class OffersActivity extends AppCompatActivity implements ItemClickListen
 
     MyRecyclerViewAdapter adapter;
     DataBaseHelper db;
-    private Button btnAction;
+    private ImageButton btnAction;
     private Button btnQuit;
     private Button btnAddOffer;
 
@@ -63,7 +64,7 @@ public class OffersActivity extends AppCompatActivity implements ItemClickListen
     }
 
     public void drawerDropMenucreator() {
-        btnAction = (Button)findViewById(R.id.btnAction);
+        btnAction = (ImageButton)findViewById(R.id.btnAction);
         final DrawerLayout drawerLayout = (DrawerLayout)findViewById(R.id.dlContent);
 
         //sl 2 reda ne murdat main screena pri izlizane na menuto

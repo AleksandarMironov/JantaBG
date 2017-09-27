@@ -9,14 +9,23 @@
    <android.support.v7.widget.Toolbar
        android:id="@+id/tbHeader"
        android:layout_width="match_parent"
-       android:layout_height="wrap_content">
-       <Button
+       android:layout_height="wrap_content"
+       android:background="#ffffff">
+       <ImageButton
            android:id="@+id/btnAction"
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content"
-           android:text="action"
-           android:textAllCaps="true"
-           android:textColor="@android:color/white"/>
+           android:layout_width="50dp"
+           android:layout_height="50dp"
+           android:scaleType="fitCenter"
+           android:src="@drawable/sandwich"
+           android:background="#ffffff"/>
+
+       <!--<Button-->
+           <!--&lt;!&ndash;android:id="@+id/btnAction"&ndash;&gt;-->
+           <!--android:layout_width="wrap_content"-->
+           <!--android:layout_height="wrap_content"-->
+           <!--android:text="action"-->
+           <!--android:textAllCaps="true"-->
+           <!--android:textColor="@android:color/white"/>-->
 
    </android.support.v7.widget.Toolbar>
 
@@ -35,13 +44,13 @@
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/my_recycler_view"
-            android:scrollbars="vertical"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_alignParentTop="true"
             android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
-        </FrameLayout>
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:scrollbars="vertical" />
+    </FrameLayout>
 
         <RelativeLayout
             android:id="@+id/rlRootMenu"
