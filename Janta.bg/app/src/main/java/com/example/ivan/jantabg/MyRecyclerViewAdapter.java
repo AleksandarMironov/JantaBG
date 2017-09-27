@@ -39,7 +39,7 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
         String title = mData.getString(1);
         String price = mData.getString(2);
         holder.title.setText(title);
-        holder.price.setText(price + "лв");
+        holder.price.setText(price);
         holder.img.setImageResource(R.drawable.empty); //will use ID of offer for this
     }
 

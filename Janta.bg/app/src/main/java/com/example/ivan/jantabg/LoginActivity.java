@@ -42,7 +42,9 @@ public class LoginActivity extends AppCompatActivity {
                 if ((!mail.matches("[;\"]")) && !pass.matches("[;\"]") && !mail.isEmpty() && !pass.isEmpty() && dataBase.checkPassword(mail, pass)){
 
                     Intent intent = new Intent("com.example.ivan.jantabg.OffersActivity");//goes to offersActivity
+                    intent.putExtra("userMail", mail);
                     startActivity(intent);
+                    finish();
 
                 } else {
 
@@ -79,5 +81,34 @@ public class LoginActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+        AlertDialog.Builder a_builder = new AlertDialog.Builder(LoginActivity.this);
+        a_builder.setMessage("Do you want to Exit?")
+                .setCancelable(false)
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) { //activity is in background
+                        finish();
+                        Intent intent = new Intent(Intent.ACTION_MAIN);
+                        intent.putExtra("userMail", "");
+                        intent.addCategory(Intent.CATEGORY_HOME);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        startActivity(intent);
+                                /*int pid = android.os.Process.myPid();=====> use this if you want to kill your activity. But its not a good one to do.
+                                android.os.Process.killProcess(pid);*/  //(black magic :) )
+                    }
+                })
+                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+        AlertDialog alert = a_builder.create();
+        alert.setTitle("Quit");
+        alert.show();
     }
 }

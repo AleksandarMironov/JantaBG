@@ -33,7 +33,7 @@ public class RegisterActivity extends AppCompatActivity {
         phone = (EditText) findViewById(R.id.text_reg_phone);
         address = (EditText) findViewById(R.id.text_reg_address);
         genderGroup = (RadioGroup) findViewById(R.id.radioGroup_gender);
-        final String gender = "";
+        final String gender = "teletubis";
         firmGroup = (RadioGroup) findViewById(R.id.radioGroup_firm);
         final String firm = "";
 
@@ -43,9 +43,20 @@ public class RegisterActivity extends AppCompatActivity {
         btn_Register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                boolean temp = dataBase.addNewUser(email.getText().toString(), firstPassword.getText().toString(), username.getText().toString(), phone.getText().toString(), address.getText().toString(), gender, firm);
+                boolean temp = dataBase.addNewUser(
+                        email.getText().toString(),
+                        firstPassword.getText().toString(),
+                        username.getText().toString(),
+                        address.getText().toString(),
+                        gender,
+                        phone.getText().toString(),
+                        firm);
+
                 if(temp){
                     Toast.makeText(RegisterActivity.this, "Now you are registered!", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
+                    startActivity(intent);
+                    finish();
                 } else {
                     Toast.makeText(RegisterActivity.this, "ERR!!!", Toast.LENGTH_SHORT).show();
                 }

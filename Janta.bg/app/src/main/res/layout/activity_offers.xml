@@ -13,8 +13,8 @@
        android:background="#ffffff">
        <ImageButton
            android:id="@+id/btnAction"
-           android:layout_width="50dp"
-           android:layout_height="50dp"
+           android:layout_width="40dp"
+           android:layout_height="40dp"
            android:scaleType="fitCenter"
            android:src="@drawable/sandwich"
            android:background="#ffffff"/>

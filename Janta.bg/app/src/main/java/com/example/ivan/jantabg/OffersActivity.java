@@ -11,6 +11,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.View;
@@ -27,9 +28,12 @@ public class OffersActivity extends AppCompatActivity implements ItemClickListen
 
     MyRecyclerViewAdapter adapter;
     DataBaseHelper db;
+    private String userMail;
     private ImageButton btnAction;
     private Button btnQuit;
     private Button btnAddOffer;
+    private Button btnUserInfo;
+    private Button btnLogOut;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,9 +41,12 @@ public class OffersActivity extends AppCompatActivity implements ItemClickListen
         setContentView(R.layout.activity_offers);
         getSupportActionBar().hide();
         db = DataBaseHelper.getHelper(this);
+        userMail = getIntent().getExtras().getString("userMail");
         drawerDropMenucreator(); //metod menu
         setOnQuitBtnClickListener();
         setOnAddOfferBtnClickListener();
+        setOnUserInfoBtnClickListener();
+        setOnLogOutBtnClickListener();
 
         // data to populate the RecyclerView with
         Cursor offersData = db.getOffers(); //id title price
@@ -56,6 +63,7 @@ public class OffersActivity extends AppCompatActivity implements ItemClickListen
     public void onItemClick(View view, int position) {
         if(position == 0){
             Intent intent = new Intent("com.example.ivan.jantabg.AddOfferActivity");
+            intent.putExtra("userMail", userMail);
             startActivity(intent);
         }
         Toast.makeText(this, "You clicked offer id " + adapter.getItem(position) + " on row number " + position, Toast.LENGTH_SHORT).show();
@@ -89,30 +97,32 @@ public class OffersActivity extends AppCompatActivity implements ItemClickListen
         btnQuit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AlertDialog.Builder a_builder = new AlertDialog.Builder(OffersActivity.this);
-                a_builder.setMessage("Do you want to Exit?")
-                        .setCancelable(false)
-                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) { //activity is in background
-                                finish();
-                                Intent intent = new Intent(Intent.ACTION_MAIN);
-                                intent.addCategory(Intent.CATEGORY_HOME);
-                                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                                startActivity(intent);
-                                /*int pid = android.os.Process.myPid();=====> use this if you want to kill your activity. But its not a good one to do.
-                                android.os.Process.killProcess(pid);*/  //(black magic :) )
-                            }
-                        })
-                        .setNegativeButton("No", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                dialog.cancel();
-                            }
-                        });
-                AlertDialog alert = a_builder.create();
-                alert.setTitle("Quit");
-                alert.show();
+                exit();
+            }
+        });
+    }
+
+    public void setOnLogOutBtnClickListener(){
+        btnLogOut = (Button) findViewById(R.id.btn_log_out);
+        btnLogOut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(OffersActivity.this, LoginActivity.class);
+                intent.putExtra("userMail", "");
+                startActivity(intent);
+                finish();
+            }
+        });
+    }
+
+    public void setOnUserInfoBtnClickListener(){
+        btnUserInfo = (Button) findViewById(R.id.btn_user_info);
+        btnUserInfo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(OffersActivity.this, UserInfoActivity.class);
+                intent.putExtra("userMail", userMail);
+                startActivity(intent);
             }
         });
     }
@@ -123,17 +133,42 @@ public class OffersActivity extends AppCompatActivity implements ItemClickListen
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent("com.example.ivan.jantabg.AddOfferActivity");
+                intent.putExtra("userMail", userMail);
                 startActivity(intent);
             }
         });
     }
 
+    public void exit(){ ///exit dialog
+        AlertDialog.Builder a_builder = new AlertDialog.Builder(OffersActivity.this);
+        a_builder.setMessage("Do you want to Exit?")
+                .setCancelable(false)
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) { //activity is in background
+                        finish();
+                        Intent intent = new Intent(Intent.ACTION_MAIN);
+                        intent.putExtra("userMail", "");
+                        intent.addCategory(Intent.CATEGORY_HOME);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        startActivity(intent);
+                                /*int pid = android.os.Process.myPid();=====> use this if you want to kill your activity. But its not a good one to do.
+                                android.os.Process.killProcess(pid);*/  //(black magic :) )
+                    }
+                })
+                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+        AlertDialog alert = a_builder.create();
+        alert.setTitle("Quit");
+        alert.show();
+    }
+
     @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) { // disable back button in offers activity
-        if (keyCode == KeyEvent.KEYCODE_BACK) {
-            moveTaskToBack(false);
-            return true;
-        }
-        return super.onKeyDown(keyCode, event);
+    public void onBackPressed() {
+        exit();
     }
 }
