@@ -34,6 +34,7 @@ public class OffersActivity extends AppCompatActivity implements ItemClickListen
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_offers);
+        getSupportActionBar().hide();
         db = DataBaseHelper.getHelper(this);
         drawerDropMenucreator(); //metod menu
         setOnQuitBtnClickListener();
