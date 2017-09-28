@@ -46,7 +46,7 @@ public class UserInfoActivity extends AppCompatActivity {
 
         ltd = (TextView) findViewById(R.id.is_ltd_info);
         String ltdInfo = cursor.getString(6);
-        phone.setText(phone.getText() + ltdInfo);
+        ltd.setText(ltd.getText() + ltdInfo);
     }
 
     @Override

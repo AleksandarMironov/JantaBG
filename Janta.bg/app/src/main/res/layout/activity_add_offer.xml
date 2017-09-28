@@ -76,10 +76,11 @@
         android:id="@+id/add_offer_choose_image"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Choose Image"
-        android:layout_below="@+id/add_offer_price"
         android:layout_alignLeft="@+id/add_offer_price"
         android:layout_alignStart="@+id/add_offer_price"
-        android:layout_marginTop="16dp" />
+        android:layout_below="@+id/add_offer_price"
+        android:layout_marginTop="16dp"
+        android:onClick="loadImagefromGallery"
+        android:text="Choose Image" />
 
 </RelativeLayout>
