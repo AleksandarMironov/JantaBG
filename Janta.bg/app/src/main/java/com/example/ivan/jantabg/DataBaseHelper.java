@@ -158,6 +158,14 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         return db.rawQuery(myRawQuery, null);
     }
 
+    public String getName (String email){
+        SQLiteDatabase db = this.getReadableDatabase();
+        String myRawQuery = "SELECT " + T_USERS_COL_3 + " FROM " + TABLE_USERS + " WHERE " + T_USERS_COL_1 + " = \"" + email + "\";";
+        Cursor c = db.rawQuery(myRawQuery, null);
+        c.moveToFirst();
+        return c.getString(0);
+    }
+
     public void create(){
         SQLiteDatabase db = this.getWritableDatabase(); ///need this to create base ?! stupid!
     }
