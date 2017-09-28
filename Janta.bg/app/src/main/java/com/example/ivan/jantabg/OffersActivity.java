@@ -18,6 +18,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.ivan.jantabg.MyRecyclerViewAdapter.ItemClickListener;
@@ -34,6 +35,7 @@ public class OffersActivity extends AppCompatActivity implements ItemClickListen
     private Button btnAddOffer;
     private Button btnUserInfo;
     private Button btnLogOut;
+    private TextView usernameWelcome;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,16 +50,18 @@ public class OffersActivity extends AppCompatActivity implements ItemClickListen
         setOnUserInfoBtnClickListener();
         setOnLogOutBtnClickListener();
 
+
         // data to populate the RecyclerView with
         Cursor offersData = db.getOffers(); //id title price
 
-         //set up the RecyclerView
+        //set up the RecyclerView
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.my_recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         adapter = new MyRecyclerViewAdapter(this, offersData);
         adapter.setClickListener(this);
         recyclerView.setAdapter(adapter);
     }
+
 
     @Override
     public void onItemClick(View view, int position) {
@@ -73,6 +77,7 @@ public class OffersActivity extends AppCompatActivity implements ItemClickListen
 
     public void drawerDropMenucreator() {
         btnAction = (ImageButton)findViewById(R.id.btnAction);
+        usernameWelcome = (TextView)findViewById(R.id.textView_toolbar_welcome_user);
         final DrawerLayout drawerLayout = (DrawerLayout)findViewById(R.id.dlContent);
 
         //sl 2 reda ne murdat main screena pri izlizane na menuto
@@ -90,6 +95,8 @@ public class OffersActivity extends AppCompatActivity implements ItemClickListen
                 }
             }
         });
+        String name = db.getName(userMail);
+        usernameWelcome.setText(usernameWelcome.getText() + "\n" + name);
     }
 
     public void setOnQuitBtnClickListener(){
@@ -169,6 +176,11 @@ public class OffersActivity extends AppCompatActivity implements ItemClickListen
 
     @Override
     public void onBackPressed() {
-        exit();
+        final DrawerLayout drawerLayout = (DrawerLayout)findViewById(R.id.dlContent);
+        if (drawerLayout.isDrawerOpen(Gravity.LEFT)) {
+            drawerLayout.closeDrawer(Gravity.LEFT);
+        } else {
+            exit();
+        }
     }
 }

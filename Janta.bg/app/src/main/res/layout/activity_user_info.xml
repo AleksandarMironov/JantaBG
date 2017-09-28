@@ -4,13 +4,131 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#8AC7FC"
     tools:context="com.example.ivan.jantabg.UserInfoActivity">
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/user_info_title"
+        android:textStyle="bold"
+        android:textSize="40sp"
+        android:fontFamily="serif"
+        android:textColor="#000000"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView"
-        tools:layout_editor_absoluteX="162dp"
-        tools:layout_editor_absoluteY="69dp" />
+        android:text="User Information"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="16dp" />
+
+    <TextView
+        android:id="@+id/username_info"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Username: "
+        android:textStyle="bold"
+        android:textSize="20sp"
+        android:fontFamily="serif"
+        android:textColor="#000000"
+        tools:layout_constraintTop_creator="1"
+        android:layout_marginStart="31dp"
+        android:layout_marginTop="109dp"
+        tools:layout_constraintLeft_creator="1"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginLeft="31dp" />
+
+    <TextView
+        android:id="@+id/email_info"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        android:fontFamily="serif"
+        android:textColor="#000000"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Email: "
+        tools:layout_constraintTop_creator="1"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="14dp"
+        app:layout_constraintTop_toBottomOf="@+id/username_info"
+        tools:layout_constraintLeft_creator="1"
+        app:layout_constraintLeft_toLeftOf="@+id/username_info"
+        android:layout_marginLeft="4dp" />
+
+    <TextView
+        android:id="@+id/is_ltd_info"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        android:fontFamily="serif"
+        android:textColor="#000000"
+        android:text="Type: "
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:layout_constraintTop_creator="1"
+        android:layout_marginTop="12dp"
+        app:layout_constraintTop_toBottomOf="@+id/gender_info"
+        tools:layout_constraintLeft_creator="1"
+        app:layout_constraintLeft_toLeftOf="@+id/gender_info" />
+
+    <TextView
+        android:id="@+id/phone_info"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        android:fontFamily="serif"
+        android:textColor="#000000"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Phone: "
+        tools:layout_constraintTop_creator="1"
+        android:layout_marginTop="9dp"
+        app:layout_constraintTop_toBottomOf="@+id/city_info"
+        tools:layout_constraintLeft_creator="1"
+        app:layout_constraintLeft_toLeftOf="@+id/city_info" />
+
+    <TextView
+        android:id="@+id/gender_info"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        android:fontFamily="serif"
+        android:textColor="#000000"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Gender: "
+        tools:layout_constraintTop_creator="1"
+        android:layout_marginTop="10dp"
+        app:layout_constraintTop_toBottomOf="@+id/phone_info"
+        tools:layout_constraintLeft_creator="1"
+        app:layout_constraintLeft_toLeftOf="@+id/phone_info" />
+
+    <TextView
+        android:id="@+id/city_info"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        android:fontFamily="serif"
+        android:textColor="#000000"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Address: "
+        tools:layout_constraintTop_creator="1"
+        tools:layout_constraintLeft_creator="1"
+        app:layout_constraintLeft_toLeftOf="@+id/email_info"
+        android:layout_marginTop="-56dp"
+        app:layout_constraintTop_toBottomOf="@+id/email_info"
+        android:layout_marginLeft="-19dp" />
+
+    <Button
+        android:layout_width="140dp"
+        android:background="@drawable/button_design"
+        android:layout_height="48dp"
+        android:textStyle="bold"
+        android:fontFamily="serif"
+        android:text="Update information"
+        tools:layout_constraintRight_creator="1"
+        tools:layout_constraintBottom_creator="1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginEnd="48dp"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginBottom="39dp"
+        android:layout_marginRight="48dp"
+        android:id="@+id/button" />
 </android.support.constraint.ConstraintLayout>

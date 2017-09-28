@@ -16,7 +16,7 @@
         android:textStyle="bold"
         android:fontFamily="serif"
         android:textColor="#2c52aa"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="23dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
 
@@ -131,10 +131,10 @@
         android:textColor="#FFFFFF"
         android:background="@drawable/set_button_borders"
         android:orientation="horizontal"
-        android:layout_marginTop="11dp"
+        android:layout_marginTop="17dp"
         android:layout_below="@+id/radioGroup_gender"
-        android:layout_alignLeft="@+id/text_reg_address"
-        android:layout_alignStart="@+id/text_reg_address">
+        android:layout_alignLeft="@+id/radioGroup_gender"
+        android:layout_alignStart="@+id/radioGroup_gender">
 
         <RadioButton
             android:id="@+id/radio_reg_private"
@@ -155,7 +155,6 @@
         <RadioButton
             android:id="@+id/radio_reg_ltd"
             android:layout_width="310sp"
-            android:textSize="18dp"
             android:layout_height="30sp"
             android:layout_alignEnd="@+id/radioGroup_firm"
             android:layout_alignRight="@+id/radioGroup_firm"
@@ -166,6 +165,7 @@
             android:gravity="center"
             android:text="LTD"
             android:textColor="#FFFFFF"
+            android:textSize="18dp"
             android:textStyle="bold" />
 
     </RadioGroup>
@@ -173,14 +173,12 @@
     <RadioGroup
         android:layout_width="310sp"
         android:layout_height="30sp"
-        android:layout_marginTop="11dp"
         android:orientation="horizontal"
-        android:layout_below="@+id/text_reg_address"
         android:id="@+id/radioGroup_gender"
-        android:layout_alignRight="@+id/radioGroup_firm"
-        android:layout_alignEnd="@+id/radioGroup_firm"
-        android:layout_alignLeft="@+id/radioGroup_firm"
-        android:layout_alignStart="@+id/radioGroup_firm">
+        android:layout_below="@+id/text_reg_address"
+        android:layout_alignLeft="@+id/text_reg_address"
+        android:layout_alignStart="@+id/text_reg_address"
+        android:layout_marginTop="13dp">
 
 
         <RadioButton
@@ -236,6 +234,6 @@
         android:layout_below="@+id/radioGroup_firm"
         android:layout_alignLeft="@+id/radioGroup_firm"
         android:layout_alignStart="@+id/radioGroup_firm"
-        android:layout_marginTop="10dp" />
+        android:layout_marginTop="11dp" />
 
 </RelativeLayout>

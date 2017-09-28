@@ -9,29 +9,44 @@ public class UserInfoActivity extends AppCompatActivity {
 
     private String userMail;
     DataBaseHelper db;
-    TextView testText; ///TODO this is for test, must add more textViews
-
+    TextView userName, email, city, address, gender, phone, ltd;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getSupportActionBar().hide();
         setContentView(R.layout.activity_user_info);
         userMail = getIntent().getExtras().getString("userMail");
         db = DataBaseHelper.getHelper(this);
-        testText = (TextView) findViewById(R.id.textView);
+        setInformation();
+    }
+
+    public void setInformation() {
         Cursor cursor = db.getUserData(userMail);
         cursor.moveToFirst();
-        String uresName = cursor.getString(2);
-        String email = cursor.getString(0);
-        String phone = cursor.getString(5);
-        String city = cursor.getString(3);
-        String gender = cursor.getString(4);
-        String ltd = cursor.getString(6);
-        testText.setText("Name: " + uresName +
-                "\nMail: " + email +
-                "\nPhone: " + phone +
-                "\nCity: " + city +
-                "\nGender: " + gender +
-                "\nLTD: " + ltd);
+
+        userName = (TextView) findViewById(R.id.username_info);
+        String userNameInfo = cursor.getString(2);
+        userName.setText(userName.getText() + userNameInfo);
+
+        email = (TextView) findViewById(R.id.email_info);
+        String emailInfo = cursor.getString(0);
+        email.setText(email.getText() + emailInfo);
+
+        city = (TextView) findViewById(R.id.city_info);
+        String cityInfo = cursor.getString(3);
+        city.setText(city.getText() + cityInfo);
+
+        gender = (TextView) findViewById(R.id.gender_info);
+        String genderInfo = cursor.getString(4);
+        gender.setText(gender.getText() + genderInfo);
+
+        phone = (TextView) findViewById(R.id.phone_info);
+        String phoneInfo = cursor.getString(5);
+        phone.setText(phone.getText() + phoneInfo);
+
+        ltd = (TextView) findViewById(R.id.is_ltd_info);
+        String ltdInfo = cursor.getString(6);
+        phone.setText(phone.getText() + ltdInfo);
     }
 
     @Override

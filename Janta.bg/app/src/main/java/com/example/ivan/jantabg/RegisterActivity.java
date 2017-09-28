@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
@@ -33,9 +34,7 @@ public class RegisterActivity extends AppCompatActivity {
         phone = (EditText) findViewById(R.id.text_reg_phone);
         address = (EditText) findViewById(R.id.text_reg_address);
         genderGroup = (RadioGroup) findViewById(R.id.radioGroup_gender);
-        final String gender = "teletubis";
         firmGroup = (RadioGroup) findViewById(R.id.radioGroup_firm);
-        final String firm = "";
 
         // add checks for ^^^^ here
 
@@ -48,9 +47,9 @@ public class RegisterActivity extends AppCompatActivity {
                         firstPassword.getText().toString(),
                         username.getText().toString(),
                         address.getText().toString(),
-                        gender,
+                        ((RadioButton)findViewById(genderGroup.getCheckedRadioButtonId())).getText().toString(),
                         phone.getText().toString(),
-                        firm);
+                        ((RadioButton)findViewById(firmGroup.getCheckedRadioButtonId())).getText().toString());
 
                 if(temp){
                     Toast.makeText(RegisterActivity.this, "Now you are registered!", Toast.LENGTH_SHORT).show();

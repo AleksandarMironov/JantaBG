@@ -19,6 +19,27 @@
            android:src="@drawable/sandwich"
            android:background="#ffffff"/>
 
+       <TextView
+           android:layout_width="230dp"
+           android:layout_height="45dp"
+           android:text="Janta.bg"
+           android:textSize="35sp"
+           android:textColor="#000000"
+           android:gravity="center"
+           android:textStyle="bold"
+           android:fontFamily="serif"/>
+
+       <TextView
+           android:id="@+id/textView_toolbar_welcome_user"
+           android:layout_width="100dp"
+           android:layout_height="45dp"
+           android:textSize="15sp"
+           android:textStyle="bold"
+           android:textColor="#000000"
+           android:text="Welcome, "
+           android:gravity="center"
+           android:fontFamily="serif"/>
+
        <!--<Button-->
            <!--&lt;!&ndash;android:id="@+id/btnAction"&ndash;&gt;-->
            <!--android:layout_width="wrap_content"-->
@@ -106,6 +127,7 @@
         </RelativeLayout>
     
     </android.support.v4.widget.DrawerLayout>
+
 
     <!--<android.support.v7.widget.RecyclerView-->
         <!--android:id="@+id/my_recycler_view"-->
