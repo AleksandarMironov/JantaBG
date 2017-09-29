@@ -55,13 +55,13 @@
         android:id="@+id/add_offer_price"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/add_offer_descr"
+        android:layout_alignStart="@+id/add_offer_descr"
+        android:layout_below="@+id/add_offer_descr"
         android:layout_marginTop="12dp"
         android:ems="10"
         android:hint="Price"
-        android:inputType="number"
-        android:layout_below="@+id/add_offer_descr"
-        android:layout_alignLeft="@+id/add_offer_descr"
-        android:layout_alignStart="@+id/add_offer_descr" />
+        android:inputType="numberDecimal" />
 
     <ImageView
         android:id="@+id/add_offer_imageview"

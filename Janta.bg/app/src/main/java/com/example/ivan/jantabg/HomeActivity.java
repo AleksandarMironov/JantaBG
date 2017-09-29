@@ -14,6 +14,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
@@ -22,12 +23,12 @@ import android.widget.TextView;
 
 import com.example.ivan.jantabg.Fragments.Fragment_Add_Offer;
 import com.example.ivan.jantabg.Fragments.Fragment_Home_Offers;
+import com.example.ivan.jantabg.Fragments.Fragment_User_Info;
 
 public class HomeActivity extends AppCompatActivity {
 
 
     DataBaseHelper db;
-    Bundle bundle;
     private String userMail;
     private ImageButton btnAction;
     private Button btnQuit;
@@ -43,7 +44,7 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_offers);
         drawerLayout = (DrawerLayout)findViewById(R.id.dlContent);
-        bundle = new Bundle();
+        Bundle bundle = new Bundle();
         bundle.putString("userMail", userMail);
         Fragment_Home_Offers homeFragment = new Fragment_Home_Offers();
         homeFragment.setArguments(bundle);
@@ -136,8 +137,10 @@ public class HomeActivity extends AppCompatActivity {
         btnHome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Bundle bundle2 = new Bundle();
+                bundle2.putString("userMail", userMail);
                 Fragment_Home_Offers homeFragment = new Fragment_Home_Offers();
-                homeFragment.setArguments(bundle);
+                homeFragment.setArguments(bundle2);
                 loadFragment(homeFragment);
                 if (drawerLayout.isDrawerOpen(Gravity.LEFT)) {
                     drawerLayout.closeDrawer(Gravity.LEFT);
@@ -163,9 +166,11 @@ public class HomeActivity extends AppCompatActivity {
         btnUserInfo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(HomeActivity.this, UserInfoActivity.class);
-                intent.putExtra("userMail", userMail);
-                startActivity(intent);
+                Bundle bundle1 = new Bundle();
+                bundle1.putString("userMail", userMail);
+                Fragment_User_Info userInfo = new Fragment_User_Info();
+                userInfo.setArguments(bundle1);
+                loadFragment(userInfo);
                 if (drawerLayout.isDrawerOpen(Gravity.LEFT)) {
                     drawerLayout.closeDrawer(Gravity.LEFT);
                 }
@@ -178,8 +183,10 @@ public class HomeActivity extends AppCompatActivity {
         btnAddOffer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Bundle bundle1 = new Bundle();
+                bundle1.putString("userMail", userMail);
                 Fragment_Add_Offer addOffer = new Fragment_Add_Offer();
-                addOffer.setArguments(bundle);
+                addOffer.setArguments(bundle1);
                 loadFragment(addOffer);
                 if (drawerLayout.isDrawerOpen(Gravity.LEFT)) {
                     drawerLayout.closeDrawer(Gravity.LEFT);

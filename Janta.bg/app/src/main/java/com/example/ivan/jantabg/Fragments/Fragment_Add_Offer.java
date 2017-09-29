@@ -22,7 +22,6 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.example.ivan.jantabg.AddOfferActivity;
 import com.example.ivan.jantabg.DataBaseHelper;
 import com.example.ivan.jantabg.HomeActivity;
 import com.example.ivan.jantabg.MyRecyclerViewAdapter;
