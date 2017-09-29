@@ -6,13 +6,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#8AC7FC"
+    android:background="@color/colorBackgroundOffers"
     tools:context="com.example.ivan.jantabg.HomeActivity">
 
     <TextView
         android:id="@+id/user_info_title"
         android:textStyle="bold"
-        android:textSize="40sp"
+        android:textSize="35sp"
         android:fontFamily="serif"
         android:textColor="#000000"
         android:layout_width="wrap_content"
@@ -21,24 +21,26 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="16dp" />
+        android:layout_marginTop="34dp"
+        app:layout_constraintHorizontal_bias="0.506"
+        tools:layout_constraintRight_creator="1"
+        tools:layout_constraintLeft_creator="1" />
 
     <TextView
         android:id="@+id/username_info"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:text="Username: "
         android:textStyle="bold"
         android:textSize="20sp"
         android:fontFamily="serif"
         android:textColor="#000000"
         tools:layout_constraintTop_creator="1"
-        android:layout_marginStart="31dp"
-        android:layout_marginTop="109dp"
-        tools:layout_constraintLeft_creator="1"
+        android:layout_marginTop="128dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginLeft="31dp" />
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintHorizontal_bias="0.149"
+        android:layout_height="0dp" />
 
     <TextView
         android:id="@+id/email_info"
@@ -51,7 +53,7 @@
         android:text="Email: "
         tools:layout_constraintTop_creator="1"
         android:layout_marginStart="4dp"
-        android:layout_marginTop="14dp"
+        android:layout_marginTop="13dp"
         app:layout_constraintTop_toBottomOf="@+id/username_info"
         tools:layout_constraintLeft_creator="1"
         app:layout_constraintLeft_toLeftOf="@+id/username_info"
@@ -114,15 +116,15 @@
         tools:layout_constraintTop_creator="1"
         tools:layout_constraintLeft_creator="1"
         app:layout_constraintLeft_toLeftOf="@+id/email_info"
-        android:layout_marginTop="-56dp"
         app:layout_constraintTop_toBottomOf="@+id/email_info"
-        android:layout_marginLeft="-19dp" />
+        android:layout_marginTop="12dp" />
 
     <Button
         android:layout_width="140dp"
-        android:background="@drawable/button_design"
+        android:background="@drawable/menu_button_design"
         android:layout_height="48dp"
         android:textStyle="bold"
+        android:textColor="#FFFFFF"
         android:fontFamily="serif"
         android:text="Update information"
         tools:layout_constraintRight_creator="1"

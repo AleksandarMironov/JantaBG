@@ -44,7 +44,14 @@ public class Fragment_User_Info extends Fragment{
 
         city = (TextView) view.findViewById(R.id.city_info);
         String cityInfo = cursor.getString(3);
-        city.setText(city.getText() + cityInfo);
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < cityInfo.length(); i++) {
+            if (i == 23) {
+                sb.append("\n");
+            }
+            sb.append(cityInfo.charAt(i));
+        }
+        city.setText(city.getText() + sb.toString());
 
         gender = (TextView) view.findViewById(R.id.gender_info);
         String genderInfo = cursor.getString(4);

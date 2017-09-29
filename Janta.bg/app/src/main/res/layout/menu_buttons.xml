@@ -5,13 +5,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/menu_buttons"
+    android:background="#586B8B"
     tools:context="com.example.ivan.jantabg.HomeActivity">
 
     <Button
         android:id="@+id/btn_home_button"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="45dp"
         android:text="Home"
+        android:background="@drawable/menu_button_design"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
@@ -19,24 +21,28 @@
     <Button
         android:id="@+id/btn_add_item"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="45dp"
+        android:background="@drawable/menu_button_design"
         android:text="Add Item"
         android:layout_below="@+id/btn_home_button"
-        android:layout_alignLeft="@+id/btn_home_button"
-        android:layout_alignStart="@+id/btn_home_button" />
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
     <Button
         android:id="@+id/btn_user_info"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="45dp"
+        android:background="@drawable/menu_button_design"
         android:text="User Info"
         android:layout_below="@+id/btn_add_item"
-        android:layout_centerHorizontal="true" />
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
     <Button
         android:id="@+id/btn_log_out"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="45dp"
+        android:background="@drawable/menu_button_design"
         android:text="Log out"
         android:layout_alignRight="@+id/btn_user_info"
         android:layout_alignEnd="@+id/btn_user_info"
@@ -45,10 +51,18 @@
     <Button
         android:id="@+id/btn_quit"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="45dp"
+        android:background="@drawable/menu_button_design"
         android:text="quit"
         android:layout_below="@+id/btn_log_out"
         android:layout_alignLeft="@+id/btn_log_out"
         android:layout_alignStart="@+id/btn_log_out" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/logooo"
+        android:layout_below="@+id/btn_quit"
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>
