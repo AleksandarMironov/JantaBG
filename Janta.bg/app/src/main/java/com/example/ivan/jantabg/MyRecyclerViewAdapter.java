@@ -2,6 +2,7 @@ package com.example.ivan.jantabg;
 
 import android.content.Context;
 import android.database.Cursor;
+import android.graphics.BitmapFactory;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -38,9 +39,14 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
         mData.moveToPosition(position);
         String title = mData.getString(1);
         String price = mData.getString(2);
+        String imgPath = mData.getString(3);
         holder.title.setText(title);
         holder.price.setText(price);
-        holder.img.setImageResource(R.drawable.empty); //will use ID of offer for this
+        if(imgPath.equals("no_image")){
+            holder.img.setImageResource(R.drawable.empty);
+        } else {
+            holder.img.setImageBitmap(BitmapFactory.decodeFile(imgPath));
+        }
     }
 
     // total number of rows

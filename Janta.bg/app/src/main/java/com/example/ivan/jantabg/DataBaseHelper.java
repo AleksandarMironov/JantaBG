@@ -154,7 +154,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
     public Cursor getOffers(){
         SQLiteDatabase db = this.getReadableDatabase();
-        String myRawQuery = "SELECT " + T_OFFER_COL_1 + ", " + T_OFFER_COL_2 + ", " + T_OFFER_COL_5 +" FROM " + TABLE_OFFER + " ;";
+        String myRawQuery = "SELECT " + T_OFFER_COL_1 + ", " + T_OFFER_COL_2 + ", " + T_OFFER_COL_5 + ", " + T_OFFER_COL_3 +" FROM " + TABLE_OFFER + " ;";
         return db.rawQuery(myRawQuery, null);
     }
 

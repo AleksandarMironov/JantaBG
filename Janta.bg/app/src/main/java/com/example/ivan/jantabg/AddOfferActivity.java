@@ -32,6 +32,7 @@ public class AddOfferActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_offer);
+        imgDecodableString = "no_image";
         db = DataBaseHelper.getHelper(this);
         userMail = getIntent().getExtras().getString("userMail");
         setOnAddBtnListener();
@@ -82,7 +83,7 @@ public class AddOfferActivity extends AppCompatActivity {
                 //String title, String img, String description, double price, String email
                 boolean send = db.addNewOffer(
                         title.getText().toString(),
-                        "image",
+                        imgDecodableString,
                         description.getText().toString(),
                         Double.parseDouble(price.getText().toString()),
                         userMail);
