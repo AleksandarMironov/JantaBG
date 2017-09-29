@@ -3,6 +3,8 @@ package com.example.ivan.jantabg.Fragments;
 import android.Manifest;
 import android.app.Activity;
 import android.app.Fragment;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
@@ -33,6 +35,7 @@ public class Fragment_Add_Offer extends Fragment{
 
     View view;
     DataBaseHelper db;
+    Bundle bundle;
     String userMail;
     private EditText title, description, price;
     private Button chooseImage, addOffer;
@@ -51,9 +54,7 @@ public class Fragment_Add_Offer extends Fragment{
         setOnChooseImgBtnListener();
         return view;
     }
-
-
-
+    
     public void setOnAddBtnListener() {
         final EditText title = (EditText) view.findViewById(R.id.add_offer_title);
         final EditText description = (EditText) view.findViewById(R.id.add_offer_descr);
@@ -71,7 +72,11 @@ public class Fragment_Add_Offer extends Fragment{
                         Double.parseDouble(price.getText().toString()),
                         userMail);
                 if(send){
-                    //
+                    bundle = new Bundle();
+                    bundle.putString("userMail", userMail);
+                    Fragment_Home_Offers homeFragment = new Fragment_Home_Offers();
+                    homeFragment.setArguments(bundle);
+                    loadFragment(homeFragment);
                     Toast.makeText(view.getContext(), "Offer added.", Toast.LENGTH_SHORT).show();
                 } else {
                     Toast.makeText(view.getContext(), "Sorry we didn't add your offer, pleace try again", Toast.LENGTH_SHORT).show();
@@ -79,7 +84,12 @@ public class Fragment_Add_Offer extends Fragment{
             }
         });
     }
-
+    private void loadFragment(Fragment fragment) {
+        FragmentManager fm = getFragmentManager();
+        FragmentTransaction ft = fm.beginTransaction();
+        ft.replace(R.id.frMain,fragment);
+        ft.commit();
+    }
     public void setOnChooseImgBtnListener(){
         Button chooseImage = (Button) view.findViewById(R.id.add_offer_choose_image);
 
