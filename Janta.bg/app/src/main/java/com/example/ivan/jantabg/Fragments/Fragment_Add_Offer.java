@@ -48,47 +48,17 @@ public class Fragment_Add_Offer extends Fragment{
         userMail = getArguments().getString("userMail");
         imgDecodableString = "no_image";
         setOnAddBtnListener();
-        //verifyStoragePermissions(view);
+        setOnChooseImgBtnListener();
         return view;
     }
 
-//    /////////////////////// this is needed for API 23+ to permit permission !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-//    // Storage Permissions
-//    private static final int REQUEST_EXTERNAL_STORAGE = 1;
-//    private static String[] PERMISSIONS_STORAGE = {
-//            Manifest.permission.READ_EXTERNAL_STORAGE, //api 16
-//            Manifest.permission.WRITE_EXTERNAL_STORAGE
-//    };
-//
-//    /**
-//     * Checks if the app has permission to write to device storage
-//     *
-//     * If the app does not has permission then the user will be prompted to grant permissions
-//     *
-//     * @param activity
-//     */
-//    public static void verifyStoragePermissions(View view) {
-//        // Check if we have write permission
-//        int permission = ActivityCompat.checkSelfPermission(view.getContext(), Manifest.permission.WRITE_EXTERNAL_STORAGE);
-//
-//        if (permission != PackageManager.PERMISSION_GRANTED) {
-//            // We don't have permission so prompt the user
-//            ActivityCompat.requestPermissions(
-//                    ,
-//                    PERMISSIONS_STORAGE,
-//                    REQUEST_EXTERNAL_STORAGE
-//            );
-//        }
-//    }
-//    /////////////////////////
+
 
     public void setOnAddBtnListener() {
         final EditText title = (EditText) view.findViewById(R.id.add_offer_title);
         final EditText description = (EditText) view.findViewById(R.id.add_offer_descr);
         final EditText price = (EditText) view.findViewById(R.id.add_offer_price);
-        Button chooseImage = (Button) view.findViewById(R.id.add_offer_choose_image);
         Button addOffer = (Button) view.findViewById(R.id.btn_add_offer_send);
-        ImageView image = (ImageView) view.findViewById(R.id.add_offer_imageview);
 
         addOffer.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -101,12 +71,22 @@ public class Fragment_Add_Offer extends Fragment{
                         Double.parseDouble(price.getText().toString()),
                         userMail);
                 if(send){
-                    Intent in = new Intent("com.example.ivan.jantabg.HomeActivity");
-                    in.putExtra("userMail", userMail);
-                    startActivity(in);
+                    //
+                    Toast.makeText(view.getContext(), "Offer added.", Toast.LENGTH_SHORT).show();
                 } else {
                     Toast.makeText(view.getContext(), "Sorry we didn't add your offer, pleace try again", Toast.LENGTH_SHORT).show();
                 }
+            }
+        });
+    }
+
+    public void setOnChooseImgBtnListener(){
+        Button chooseImage = (Button) view.findViewById(R.id.add_offer_choose_image);
+
+        chooseImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                loadImagefromGallery(v);
             }
         });
     }

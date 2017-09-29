@@ -1,11 +1,15 @@
 package com.example.ivan.jantabg;
 
+import android.Manifest;
+import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -31,11 +35,14 @@ public class HomeActivity extends AppCompatActivity {
     private Button btnUserInfo;
     private Button btnLogOut;
     private TextView usernameWelcome;
+    private Button btnHome;
+    private DrawerLayout drawerLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_offers);
+        drawerLayout = (DrawerLayout)findViewById(R.id.dlContent);
         bundle = new Bundle();
         bundle.putString("userMail", userMail);
         Fragment_Home_Offers homeFragment = new Fragment_Home_Offers();
@@ -44,11 +51,13 @@ public class HomeActivity extends AppCompatActivity {
         getSupportActionBar().hide();
         db = DataBaseHelper.getHelper(this);
         userMail = getIntent().getExtras().getString("userMail");
+        verifyStoragePermissions(this);
         drawerDropMenucreator(); //metod menu
         setOnQuitBtnClickListener();
         setOnAddOfferBtnClickListener();
         setOnUserInfoBtnClickListener();
         setOnLogOutBtnClickListener();
+        setOnHomeBtnClickListener();
     }
 
     private void loadFragment(Fragment fragment) {
@@ -58,6 +67,35 @@ public class HomeActivity extends AppCompatActivity {
         ft.commit();
     }
 
+        /////////////////////// this is needed for API 23+ to permit permission !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    // Storage Permissions
+    private static final int REQUEST_EXTERNAL_STORAGE = 1;
+    private static String[] PERMISSIONS_STORAGE = {
+            Manifest.permission.READ_EXTERNAL_STORAGE, //api 16
+            Manifest.permission.WRITE_EXTERNAL_STORAGE
+    };
+
+    /**
+     * Checks if the app has permission to write to device storage
+     *
+     * If the app does not has permission then the user will be prompted to grant permissions
+     *
+     * @param activity
+     */
+    public static void verifyStoragePermissions(Activity activity) {
+        // Check if we have write permission
+        int permission = ActivityCompat.checkSelfPermission(activity, Manifest.permission.WRITE_EXTERNAL_STORAGE);
+
+        if (permission != PackageManager.PERMISSION_GRANTED) {
+            // We don't have permission so prompt the user
+            ActivityCompat.requestPermissions(
+                    activity,
+                    PERMISSIONS_STORAGE,
+                    REQUEST_EXTERNAL_STORAGE
+            );
+        }
+    }
+    /////////////////////////
 
     public void drawerDropMenucreator() {
         btnAction = (ImageButton)findViewById(R.id.btnAction);
@@ -93,6 +131,20 @@ public class HomeActivity extends AppCompatActivity {
         });
     }
 
+    public void setOnHomeBtnClickListener(){
+        btnHome = (Button) findViewById(R.id.btn_home_button);
+        btnHome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Fragment_Home_Offers homeFragment = new Fragment_Home_Offers();
+                homeFragment.setArguments(bundle);
+                loadFragment(homeFragment);
+                if (drawerLayout.isDrawerOpen(Gravity.LEFT)) {
+                    drawerLayout.closeDrawer(Gravity.LEFT);
+                }
+            }
+        });
+    }
     public void setOnLogOutBtnClickListener(){
         btnLogOut = (Button) findViewById(R.id.btn_log_out);
         btnLogOut.setOnClickListener(new View.OnClickListener() {
@@ -114,6 +166,9 @@ public class HomeActivity extends AppCompatActivity {
                 Intent intent = new Intent(HomeActivity.this, UserInfoActivity.class);
                 intent.putExtra("userMail", userMail);
                 startActivity(intent);
+                if (drawerLayout.isDrawerOpen(Gravity.LEFT)) {
+                    drawerLayout.closeDrawer(Gravity.LEFT);
+                }
             }
         });
     }
@@ -126,6 +181,9 @@ public class HomeActivity extends AppCompatActivity {
                 Fragment_Add_Offer addOffer = new Fragment_Add_Offer();
                 addOffer.setArguments(bundle);
                 loadFragment(addOffer);
+                if (drawerLayout.isDrawerOpen(Gravity.LEFT)) {
+                    drawerLayout.closeDrawer(Gravity.LEFT);
+                }
             }
         });
     }
@@ -160,7 +218,6 @@ public class HomeActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        final DrawerLayout drawerLayout = (DrawerLayout)findViewById(R.id.dlContent);
         if (drawerLayout.isDrawerOpen(Gravity.LEFT)) {
             drawerLayout.closeDrawer(Gravity.LEFT);
         } else {
