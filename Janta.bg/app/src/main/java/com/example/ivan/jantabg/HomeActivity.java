@@ -1,34 +1,29 @@
 package com.example.ivan.jantabg;
 
+import android.app.Fragment;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.database.Cursor;
 import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.Gravity;
-import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.example.ivan.jantabg.MyRecyclerViewAdapter.ItemClickListener;
+import com.example.ivan.jantabg.Fragments.Fragment_Add_Offer;
+import com.example.ivan.jantabg.Fragments.Fragment_Home_Offers;
 
-import java.util.ArrayList;
+public class HomeActivity extends AppCompatActivity {
 
-public class OffersActivity extends AppCompatActivity implements ItemClickListener {
 
-    MyRecyclerViewAdapter adapter;
     DataBaseHelper db;
+    Bundle bundle;
     private String userMail;
     private ImageButton btnAction;
     private Button btnQuit;
@@ -40,7 +35,12 @@ public class OffersActivity extends AppCompatActivity implements ItemClickListen
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_offers);
+        setContentView(R.layout.activity_home_offers);
+        bundle = new Bundle();
+        bundle.putString("userMail", userMail);
+        Fragment_Home_Offers homeFragment = new Fragment_Home_Offers();
+        homeFragment.setArguments(bundle);
+        loadFragment(homeFragment);
         getSupportActionBar().hide();
         db = DataBaseHelper.getHelper(this);
         userMail = getIntent().getExtras().getString("userMail");
@@ -49,31 +49,15 @@ public class OffersActivity extends AppCompatActivity implements ItemClickListen
         setOnAddOfferBtnClickListener();
         setOnUserInfoBtnClickListener();
         setOnLogOutBtnClickListener();
-
-
-        // data to populate the RecyclerView with
-        Cursor offersData = db.getOffers(); //id title price
-
-        //set up the RecyclerView
-        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.my_recycler_view);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        adapter = new MyRecyclerViewAdapter(this, offersData);
-        adapter.setClickListener(this);
-        recyclerView.setAdapter(adapter);
     }
 
-
-    @Override
-    public void onItemClick(View view, int position) {
-        if(position == 0){
-            Intent intent = new Intent("com.example.ivan.jantabg.AddOfferActivity");
-            intent.putExtra("userMail", userMail);
-            startActivity(intent);
-        }
-        Toast.makeText(this, "You clicked offer id " + adapter.getItem(position) + " on row number " + position, Toast.LENGTH_SHORT).show();
-        /*Intent intent = new Intent(""); <--- add offer details page here
-        startActivity(intent);*/
+    private void loadFragment(Fragment fragment) {
+        FragmentManager fm = getFragmentManager();
+        FragmentTransaction ft = fm.beginTransaction();
+        ft.replace(R.id.frMain,fragment);
+        ft.commit();
     }
+
 
     public void drawerDropMenucreator() {
         btnAction = (ImageButton)findViewById(R.id.btnAction);
@@ -114,7 +98,7 @@ public class OffersActivity extends AppCompatActivity implements ItemClickListen
         btnLogOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(OffersActivity.this, LoginActivity.class);
+                Intent intent = new Intent(HomeActivity.this, LoginActivity.class);
                 intent.putExtra("userMail", "");
                 startActivity(intent);
                 finish();
@@ -127,7 +111,7 @@ public class OffersActivity extends AppCompatActivity implements ItemClickListen
         btnUserInfo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(OffersActivity.this, UserInfoActivity.class);
+                Intent intent = new Intent(HomeActivity.this, UserInfoActivity.class);
                 intent.putExtra("userMail", userMail);
                 startActivity(intent);
             }
@@ -139,15 +123,15 @@ public class OffersActivity extends AppCompatActivity implements ItemClickListen
         btnAddOffer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent("com.example.ivan.jantabg.AddOfferActivity");
-                intent.putExtra("userMail", userMail);
-                startActivity(intent);
+                Fragment_Add_Offer addOffer = new Fragment_Add_Offer();
+                addOffer.setArguments(bundle);
+                loadFragment(addOffer);
             }
         });
     }
 
     public void exit(){ ///exit dialog
-        AlertDialog.Builder a_builder = new AlertDialog.Builder(OffersActivity.this);
+        AlertDialog.Builder a_builder = new AlertDialog.Builder(HomeActivity.this);
         a_builder.setMessage("Do you want to Exit?")
                 .setCancelable(false)
                 .setPositiveButton("Yes", new DialogInterface.OnClickListener() {

@@ -32,6 +32,7 @@ public class AddOfferActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_offer);
+        getSupportActionBar().hide();
         imgDecodableString = "no_image";
         db = DataBaseHelper.getHelper(this);
         userMail = getIntent().getExtras().getString("userMail");
@@ -88,7 +89,7 @@ public class AddOfferActivity extends AppCompatActivity {
                         Double.parseDouble(price.getText().toString()),
                         userMail);
                 if(send){
-                    Intent in = new Intent("com.example.ivan.jantabg.OffersActivity");
+                    Intent in = new Intent("com.example.ivan.jantabg.HomeActivity");
                     in.putExtra("userMail", userMail);
                     startActivity(in);
                     finish();

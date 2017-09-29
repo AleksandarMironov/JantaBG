@@ -41,7 +41,7 @@ public class LoginActivity extends AppCompatActivity {
 
                 if ((!mail.matches("[;\"]")) && !pass.matches("[;\"]") && !mail.isEmpty() && !pass.isEmpty() && dataBase.checkPassword(mail, pass)){
 
-                    Intent intent = new Intent("com.example.ivan.jantabg.OffersActivity");//goes to offersActivity
+                    Intent intent = new Intent("com.example.ivan.jantabg.HomeActivity");//goes to offersActivity
                     intent.putExtra("userMail", mail);
                     startActivity(intent);
                     finish();

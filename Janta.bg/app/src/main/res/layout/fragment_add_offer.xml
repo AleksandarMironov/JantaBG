@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.ivan.jantabg.HomeActivity">
+
+
+
+    <Button
+        android:id="@+id/btn_add_offer_send"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="add"
+        tools:layout_editor_absoluteX="147dp"
+        tools:layout_editor_absoluteY="273dp"
+        android:layout_alignBaseline="@+id/add_offer_choose_image"
+        android:layout_alignBottom="@+id/add_offer_choose_image"
+        android:layout_toRightOf="@+id/add_offer_choose_image"
+        android:layout_toEndOf="@+id/add_offer_choose_image" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="27dp"
+        android:text="ADD OFFER TO THE MARKET"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <EditText
+        android:id="@+id/add_offer_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="18dp"
+        android:ems="10"
+        android:hint="Title"
+        android:inputType="textNoSuggestions|textPersonName" />
+
+    <EditText
+        android:id="@+id/add_offer_descr"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Description"
+        android:inputType="textPersonName"
+        android:layout_below="@+id/add_offer_title"
+        android:layout_alignLeft="@+id/add_offer_title"
+        android:layout_alignStart="@+id/add_offer_title" />
+
+    <EditText
+        android:id="@+id/add_offer_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:ems="10"
+        android:hint="Price"
+        android:inputType="number"
+        android:layout_below="@+id/add_offer_descr"
+        android:layout_alignLeft="@+id/add_offer_descr"
+        android:layout_alignStart="@+id/add_offer_descr" />
+
+    <ImageView
+        android:id="@+id/add_offer_imageview"
+        android:layout_width="300dp"
+        android:layout_height="200dp"
+        app:srcCompat="@drawable/empty"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="19dp" />
+
+    <Button
+        android:id="@+id/add_offer_choose_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/add_offer_price"
+        android:layout_alignStart="@+id/add_offer_price"
+        android:layout_below="@+id/add_offer_price"
+        android:layout_marginTop="16dp"
+        android:onClick="loadImagefromGallery"
+        android:text="Choose Image" />
+
+</RelativeLayout>
