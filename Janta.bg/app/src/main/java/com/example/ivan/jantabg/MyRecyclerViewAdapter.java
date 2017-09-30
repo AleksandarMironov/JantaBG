@@ -41,7 +41,7 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
         String price = mData.getString(2);
         String imgPath = mData.getString(3);
         holder.title.setText(title);
-        holder.price.setText(holder.price.getText() + price);
+        holder.price.setText("$" + price);
         if(imgPath.equals("no_image")){
             holder.img.setImageResource(R.drawable.empty);
         } else {
