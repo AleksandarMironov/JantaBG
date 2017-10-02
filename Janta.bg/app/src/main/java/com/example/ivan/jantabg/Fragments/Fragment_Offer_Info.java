@@ -6,6 +6,7 @@ import android.app.FragmentTransaction;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,7 +15,7 @@ import android.widget.TextView;
 import com.example.ivan.jantabg.DataBaseHelper;
 import com.example.ivan.jantabg.R;
 
-public class Fragment_Offer_Info extends android.app.Fragment {
+public class Fragment_Offer_Info extends Fragment {
 
     View view;
     DataBaseHelper db;
@@ -35,13 +36,24 @@ public class Fragment_Offer_Info extends android.app.Fragment {
 
     public void setInformation() {
         test = (TextView) view.findViewById(R.id.testText);
+
         Cursor cursorOffer = db.getOfferData(offerId);
-        Cursor cursorUser = db.getUserData(userMail);
         cursorOffer.moveToFirst();
-        for(int i = 0; i < cursorOffer.getColumnCount(); i++){
-           test.setText(test.getText() + cursorOffer.getString(i));
-        }
+
+        Cursor cursorUser = db.getUserData(cursorOffer.getString(6));
+        cursorUser.moveToFirst();
+
+        String userEmail = cursorUser.getString(0);
+        String userName = cursorUser.getString(2);
+        String userAddres = cursorUser.getString(3);
+        String userPhone = cursorUser.getString(5);
+
+        String offerTitle = cursorOffer.getString(1);
+        String offerDescription = cursorOffer.getString(3);
+        String offerPrice = cursorOffer.getString(4);
+        String offerImgPath = cursorOffer.getString(2);
+        //offer date time = col 5....
+        test.setText(offerTitle + "\n" + offerDescription + "\n" + offerPrice + "\n" + offerImgPath + "\n" + userEmail + "\n" + userName  + "\n" + userAddres  + "\n" +  userPhone);
+
     }
-
 }
-

@@ -42,23 +42,28 @@ public class RegisterActivity extends AppCompatActivity {
         btn_Register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                boolean temp = dataBase.addNewUser(
-                        email.getText().toString(),
-                        firstPassword.getText().toString(),
-                        username.getText().toString(),
-                        address.getText().toString(),
-                        ((RadioButton)findViewById(genderGroup.getCheckedRadioButtonId())).getText().toString(),
-                        phone.getText().toString(),
-                        ((RadioButton)findViewById(firmGroup.getCheckedRadioButtonId())).getText().toString());
+                if(Utilities.isMail(email.getText().toString())){
+                    boolean temp = dataBase.addNewUser(
+                            email.getText().toString(),
+                            firstPassword.getText().toString(),
+                            username.getText().toString(),
+                            address.getText().toString(),
+                            ((RadioButton)findViewById(genderGroup.getCheckedRadioButtonId())).getText().toString(),
+                            phone.getText().toString(),
+                            ((RadioButton)findViewById(firmGroup.getCheckedRadioButtonId())).getText().toString());
 
-                if(temp){
-                    Toast.makeText(RegisterActivity.this, "Now you are registered!", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
-                    startActivity(intent);
-                    finish();
+                    if(temp){
+                        Toast.makeText(RegisterActivity.this, "Now you are registered!", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
+                        startActivity(intent);
+                        finish();
+                    } else {
+                        Toast.makeText(RegisterActivity.this, "ERR!!!", Toast.LENGTH_SHORT).show();
+                    }
                 } else {
-                    Toast.makeText(RegisterActivity.this, "ERR!!!", Toast.LENGTH_SHORT).show();
+                    email.setError("Wrong email!");
                 }
+
             }
         });
     }

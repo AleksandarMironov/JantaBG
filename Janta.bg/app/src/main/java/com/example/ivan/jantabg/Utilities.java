@@ -1,14 +1,17 @@
 package com.example.ivan.jantabg;
 
 
+import android.text.TextUtils;
+
 public class Utilities {
     public static boolean checkString(String str){
-        //// TODO
+        if (str.isEmpty() ||  str.matches("[&\\;'\"]")){ //bad simbols for database
+            return false;
+        }
         return true;
     }
 
     public static boolean isMail(String str){
-        //// TODO
-        return true;
+        return !TextUtils.isEmpty(str) && android.util.Patterns.EMAIL_ADDRESS.matcher(str).matches();
     }
 }
