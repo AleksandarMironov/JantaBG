@@ -1,5 +1,6 @@
 package com.example.ivan.jantabg;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -78,9 +79,23 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent("com.example.ivan.jantabg.RegisterActivity");
-                startActivity(intent);
+                startActivityForResult(intent, 13);
+
             }
         });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 13) {
+            if(resultCode == Activity.RESULT_OK){
+                email = (EditText)findViewById(R.id.editText_loginEmail);
+                password = (EditText)findViewById(R.id.editText_loginPassword);
+                email.setText(data.getStringExtra("userMail"));
+                password.setText(data.getStringExtra("pass"));
+            }
+        }
     }
 
     @Override

@@ -1,6 +1,9 @@
 package com.example.ivan.jantabg;
 
+import android.app.Activity;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -54,8 +57,10 @@ public class RegisterActivity extends AppCompatActivity {
 
                     if(temp){
                         Toast.makeText(RegisterActivity.this, "Now you are registered!", Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
-                        startActivity(intent);
+                        Intent returnIntent = new Intent();
+                        returnIntent.putExtra("userMail",email.getText().toString());
+                        returnIntent.putExtra("pass", firstPassword.getText().toString());
+                        setResult(Activity.RESULT_OK,returnIntent);
                         finish();
                     } else {
                         Toast.makeText(RegisterActivity.this, "ERR!!!", Toast.LENGTH_SHORT).show();
@@ -66,5 +71,29 @@ public class RegisterActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+        AlertDialog.Builder a_builder = new AlertDialog.Builder(RegisterActivity.this);
+        a_builder.setMessage("Do you want to cancel registration?")
+                .setCancelable(false)
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) { //activity is in background
+                        Intent returnIntent = new Intent();  //getIntent() ?!
+                        setResult(Activity.RESULT_CANCELED, returnIntent);
+                        finish();
+                    }
+                })
+                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+        AlertDialog alert = a_builder.create();
+        alert.setTitle("Cancel registration");
+        alert.show();
     }
 }
