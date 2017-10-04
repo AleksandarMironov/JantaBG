@@ -5,7 +5,7 @@ import android.text.TextUtils;
 
 public class Utilities {
     public static boolean checkString(String str){
-        if (str.isEmpty() ||  str.matches("[&\\;'\"]")){ //bad simbols for database
+        if (TextUtils.isEmpty(str) ||  str.matches("[&\\;'\"]")){ //bad simbols for database
             return false;
         }
         return true;

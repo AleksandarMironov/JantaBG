@@ -46,14 +46,24 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if(Utilities.isMail(email.getText().toString())){
-                    boolean temp = dataBase.addNewUser(
-                            email.getText().toString(),
-                            firstPassword.getText().toString(),
-                            username.getText().toString(),
-                            address.getText().toString(),
-                            ((RadioButton)findViewById(genderGroup.getCheckedRadioButtonId())).getText().toString(),
-                            phone.getText().toString(),
-                            ((RadioButton)findViewById(firmGroup.getCheckedRadioButtonId())).getText().toString());
+                    String emailStr = email.getText().toString();
+                    String passStr = firstPassword.getText().toString();
+                    String usernameStr = username.getText().toString();
+                    String addresStr = address.getText().toString();
+                    String phoneStr = phone.getText().toString();
+
+                    boolean temp = (Utilities.checkString(emailStr) && Utilities.checkString(passStr) && Utilities.checkString(usernameStr) && Utilities.checkString(addresStr) && Utilities.checkString(phoneStr));
+
+                    if(temp){
+                        temp = dataBase.addNewUser(
+                                emailStr,
+                                passStr,
+                                usernameStr,
+                                addresStr,
+                                ((RadioButton)findViewById(genderGroup.getCheckedRadioButtonId())).getText().toString(),
+                                phoneStr,
+                                ((RadioButton)findViewById(firmGroup.getCheckedRadioButtonId())).getText().toString());
+                    }
 
                     if(temp){
                         Toast.makeText(RegisterActivity.this, "Now you are registered!", Toast.LENGTH_SHORT).show();

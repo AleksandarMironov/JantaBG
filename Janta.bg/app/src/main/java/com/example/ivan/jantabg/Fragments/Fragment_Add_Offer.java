@@ -1,20 +1,16 @@
 package com.example.ivan.jantabg.Fragments;
 
-import android.Manifest;
-import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.annotation.Nullable;
-import android.support.v4.app.ActivityCompat;
-import android.util.Log;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,9 +20,8 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.ivan.jantabg.DataBaseHelper;
-import com.example.ivan.jantabg.HomeActivity;
-import com.example.ivan.jantabg.MyRecyclerViewAdapter;
 import com.example.ivan.jantabg.R;
+import com.example.ivan.jantabg.Utilities;
 
 import static android.app.Activity.RESULT_OK;
 
@@ -65,23 +60,39 @@ public class Fragment_Add_Offer extends Fragment{
             @Override
             public void onClick(View v) {
                 //String title, String img, String description, double price, String email
-                Log.e("myerr", userMail);
-                boolean send = db.addNewOffer(
-                        title.getText().toString(),
-                        imgDecodableString,
-                        description.getText().toString(),
-                        Double.parseDouble(price.getText().toString()),
-                        userMail);
-                if(send){
-                    bundle = new Bundle();
-                    bundle.putString("userMail", userMail);
-                    Fragment_Home_Offers homeFragment = new Fragment_Home_Offers();
-                    homeFragment.setArguments(bundle);
-                    loadFragment(homeFragment);
-                    Toast.makeText(view.getContext(), "Offer added.", Toast.LENGTH_SHORT).show();
+                String titleStr = title.getText().toString();
+                String descriptionStr = description.getText().toString();
+                String priceStr = price.getText().toString();
+
+                if(Utilities.checkString(titleStr) && Utilities.checkString(descriptionStr) && Utilities.checkString(priceStr)){
+                    boolean send = db.addNewOffer(
+                            titleStr,
+                            imgDecodableString,
+                            descriptionStr,
+                            Double.parseDouble(priceStr),
+                            userMail);
+                    if(send){
+                        bundle = new Bundle();
+                        bundle.putString("userMail", userMail);
+                        Fragment_Home_Offers homeFragment = new Fragment_Home_Offers();
+                        homeFragment.setArguments(bundle);
+                        loadFragment(homeFragment);
+                        Toast.makeText(view.getContext(), "Offer added.", Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(view.getContext(), "Sorry we didn't add your offer, pleace try again", Toast.LENGTH_SHORT).show();
+                    }
                 } else {
-                    Toast.makeText(view.getContext(), "Sorry we didn't add your offer, pleace try again", Toast.LENGTH_SHORT).show();
+                    if(!Utilities.checkString(titleStr)){
+                        title.setError("Wrong input");
+                    }
+                    if(!Utilities.checkString(descriptionStr)){
+                        description.setError("Wrong input");
+                    }
+                    if(!Utilities.checkString(priceStr)){
+                        price.setError("Wrong input");
+                    }
                 }
+
             }
         });
     }

@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -40,35 +41,47 @@ public class LoginActivity extends AppCompatActivity {
                 String mail = email.getText().toString();
                 String pass = password.getText().toString();
 
-                if ((!mail.matches("[;\"]")) && !pass.matches("[;\"]") && !mail.isEmpty() && !pass.isEmpty() && dataBase.checkPassword(mail, pass)){
+                if (Utilities.checkString(mail) && Utilities.checkString(pass)) {
+                    if ((!mail.matches("[;\"]")) && !pass.matches("[;\"]") && !mail.isEmpty() && !pass.isEmpty() && dataBase.checkPassword(mail, pass)){
 
-                    Intent intent = new Intent("com.example.ivan.jantabg.HomeActivity");//goes to offersActivity
-                    intent.putExtra("userMail", mail);
-                    startActivity(intent);
-                    finish();
+                        Intent intent = new Intent("com.example.ivan.jantabg.HomeActivity");//goes to offersActivity
+                        intent.putExtra("userMail", mail);
+                        startActivity(intent);
+                        finish();
+
+                    } else {
+
+                        AlertDialog.Builder alert_builder = new AlertDialog.Builder(LoginActivity.this);
+                        alert_builder.setMessage("Invalid username or password. If you haven't registered yet, please click on Register button to create your new account.")
+                                .setCancelable(false)
+                                .setPositiveButton("CONTINUE", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        dialog.cancel();
+                                    }
+                                })
+                                .setNegativeButton("REGISTER", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        Intent intent = new Intent("com.example.ivan.jantabg.RegisterActivity");
+                                        startActivity(intent); //goes directly to register screen
+                                    }
+                                });
+                        AlertDialog ad = alert_builder.create();
+                        ad.setTitle("ERROR");
+                        ad.show();
+                    }
 
                 } else {
+                    if (!Utilities.checkString(mail)){
+                        email.setError("Forbidden symbols or empty!!!");
+                    }
 
-                    AlertDialog.Builder alert_builder = new AlertDialog.Builder(LoginActivity.this);
-                    alert_builder.setMessage("Invalid username or password. If you haven't registered yet, please click on Register button to create your new account.")
-                            .setCancelable(false)
-                            .setPositiveButton("CONTINUE", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-                                    dialog.cancel();
-                                }
-                            })
-                            .setNegativeButton("REGISTER", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-                                    Intent intent = new Intent("com.example.ivan.jantabg.RegisterActivity");
-                                    startActivity(intent); //goes directly to register screen
-                                }
-                            });
-                    AlertDialog ad = alert_builder.create();
-                    ad.setTitle("ERROR");
-                    ad.show();
+                    if(!Utilities.checkString(pass)){
+                        password.setError("Forbidden symbols or empty!!!");
+                    }
                 }
+
             }
         });
     }
