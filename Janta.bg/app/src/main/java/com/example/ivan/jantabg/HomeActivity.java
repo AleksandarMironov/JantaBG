@@ -21,6 +21,7 @@ import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.ivan.jantabg.Fragments.Fragment_Add_Offer;
 import com.example.ivan.jantabg.Fragments.Fragment_Home_Offers;
@@ -228,8 +229,14 @@ public class HomeActivity extends AppCompatActivity {
     public void onBackPressed() {
         if (drawerLayout.isDrawerOpen(Gravity.LEFT)) {
             drawerLayout.closeDrawer(Gravity.LEFT);
-        } else {
+        } else if (getFragmentManager().findFragmentById(R.id.frMain) instanceof Fragment_Home_Offers){
             exit();
+        } else {
+            Bundle bundle2 = new Bundle();
+            bundle2.putString("userMail", userMail);
+            Fragment_Home_Offers homeFragment = new Fragment_Home_Offers();
+            homeFragment.setArguments(bundle2);
+            loadFragment(homeFragment);
         }
     }
 }

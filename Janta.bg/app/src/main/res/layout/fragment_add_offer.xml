@@ -71,20 +71,20 @@
         android:layout_alignStart="@+id/add_offer_title" />
 
     <EditText
+        android:id="@+id/add_offer_price"
         android:layout_width="wrap_content"
         android:layout_height="35dp"
-        android:background="@drawable/set_button_borders_black"
-        android:ems="10"
-        android:hint="Price"
-        android:textColorHint="#000000"
-        android:gravity="center"
-        android:fontFamily="serif"
-        android:textStyle="bold"
-        android:inputType="textPersonName"
-        android:layout_below="@+id/add_offer_descr"
         android:layout_alignLeft="@+id/add_offer_descr"
         android:layout_alignStart="@+id/add_offer_descr"
-        android:id="@+id/add_offer_price" />
+        android:layout_below="@+id/add_offer_descr"
+        android:background="@drawable/set_button_borders_black"
+        android:ems="10"
+        android:fontFamily="serif"
+        android:gravity="center"
+        android:hint="Price"
+        android:inputType="numberDecimal"
+        android:textColorHint="#000000"
+        android:textStyle="bold" />
 
     <ImageView
         android:id="@+id/add_offer_imageview"

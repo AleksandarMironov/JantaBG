@@ -122,7 +122,6 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     public Cursor getUserData(String email){
         SQLiteDatabase db = this.getReadableDatabase();
         String myRawQuery = "SELECT * FROM " + TABLE_USERS + " WHERE " + T_USERS_COL_1 + " = \"" + email + "\";";
-        //add and user offers info - ako ima vreme
         return db.rawQuery(myRawQuery, null);
     }
 
@@ -164,6 +163,30 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         Cursor c = db.rawQuery(myRawQuery, null);
         c.moveToFirst();
         return c.getString(0);
+    }
+
+    public boolean changeUserInfo(String email, String password, String name, String city, String gender, String phone, String ltd){
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        String myRawQuery = "SELECT * FROM " + TABLE_USERS + " WHERE " + T_USERS_COL_1 + " = \"" + email + "\";";
+        if (db.rawQuery(myRawQuery, null).getCount() != 0) {
+            return false;
+        }
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(T_USERS_COL_1, email);
+        contentValues.put(T_USERS_COL_2, password);
+        contentValues.put(T_USERS_COL_3, name);
+        contentValues.put(T_USERS_COL_4, city);
+        contentValues.put(T_USERS_COL_5, gender);
+        contentValues.put(T_USERS_COL_6, phone);
+        contentValues.put(T_USERS_COL_7, ltd);
+
+        long b = db.update(TABLE_USERS, contentValues, T_USERS_COL_1 + "=" + email, null);
+
+        if (b == -1) {
+            return false;
+        }
+        return true;
     }
 
     public void create(){

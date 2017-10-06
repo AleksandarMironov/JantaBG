@@ -52,10 +52,29 @@ public class RegisterActivity extends AppCompatActivity {
                     String addresStr = address.getText().toString();
                     String phoneStr = phone.getText().toString();
 
-                    boolean temp = (Utilities.checkString(emailStr) && Utilities.checkString(passStr) && Utilities.checkString(usernameStr) && Utilities.checkString(addresStr) && Utilities.checkString(phoneStr));
+                    if(!Utilities.checkString(passStr)){
+                        firstPassword.setError("Forbidden symbols or empty");
+                        return;
+                    }
+                    if(!Utilities.checkString(usernameStr)){
+                        username.setError("Forbidden symbols or empty");
+                        return;
+                    }
+                    if(!Utilities.checkString(addresStr)){
+                        address.setError("Forbidden symbols or empty");
+                        return;
+                    }
+                    if(!Utilities.checkString(phoneStr)){
+                        phone.setError("Forbidden symbols or empty");
+                        return;
+                    }
+                    if(!passStr.equals(secondPassword.getText().toString())){
+                        secondPassword.setError("Pass 1 do not match pass 2");
+                        return;
+                    }
 
-                    if(temp){
-                        temp = dataBase.addNewUser(
+
+                    boolean temp = dataBase.addNewUser(
                                 emailStr,
                                 passStr,
                                 usernameStr,
@@ -63,7 +82,7 @@ public class RegisterActivity extends AppCompatActivity {
                                 ((RadioButton)findViewById(genderGroup.getCheckedRadioButtonId())).getText().toString(),
                                 phoneStr,
                                 ((RadioButton)findViewById(firmGroup.getCheckedRadioButtonId())).getText().toString());
-                    }
+
 
                     if(temp){
                         Toast.makeText(RegisterActivity.this, "Now you are registered!", Toast.LENGTH_SHORT).show();
@@ -76,7 +95,7 @@ public class RegisterActivity extends AppCompatActivity {
                         Toast.makeText(RegisterActivity.this, "ERR!!!", Toast.LENGTH_SHORT).show();
                     }
                 } else {
-                    email.setError("Wrong email!");
+                    email.setError("Wrong email");
                 }
 
             }
