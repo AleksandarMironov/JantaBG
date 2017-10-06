@@ -7,10 +7,12 @@ import android.content.Intent;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 public class LoginActivity extends AppCompatActivity {
@@ -18,6 +20,7 @@ public class LoginActivity extends AppCompatActivity {
     private DataBaseHelper dataBase;
     private EditText email, password;
     private Button btn_Login, btn_Register;
+    private RelativeLayout layout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +31,18 @@ public class LoginActivity extends AppCompatActivity {
         dataBase.create();
         loginButtonOnClickListener();
         registerButtonOnClickListener();
+        hideKeyboardOnClickListener();
+    }
+
+    public void hideKeyboardOnClickListener(){
+        layout = (RelativeLayout) findViewById(R.id.act_login);
+        layout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                InputMethodManager imm = (InputMethodManager) getSystemService(Activity.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
+            }
+        });
     }
 
     public void loginButtonOnClickListener() {

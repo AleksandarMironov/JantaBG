@@ -1,5 +1,6 @@
 package com.example.ivan.jantabg.Fragments;
 
+import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
@@ -14,9 +15,11 @@ import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.example.ivan.jantabg.DataBaseHelper;
@@ -31,6 +34,7 @@ public class Fragment_Add_Offer extends Fragment{
     View view;
     DataBaseHelper db;
     Bundle bundle;
+    private RelativeLayout layout;
     String userMail;
     private EditText title, description, price;
     private Button chooseImage, addOffer;
@@ -47,7 +51,19 @@ public class Fragment_Add_Offer extends Fragment{
         imgDecodableString = "no_image";
         setOnAddBtnListener();
         setOnChooseImgBtnListener();
+        hideKeyboardOnClickListener();
         return view;
+    }
+
+    public void hideKeyboardOnClickListener(){
+        layout = (RelativeLayout) view.findViewById(R.id.lay_add_offer);
+        layout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                InputMethodManager imm = (InputMethodManager) view.getContext().getSystemService(Activity.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
+            }
+        });
     }
     
     public void setOnAddBtnListener() {

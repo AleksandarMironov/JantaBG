@@ -7,14 +7,17 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 public class RegisterActivity extends AppCompatActivity {
 
+    private RelativeLayout layout;
     DataBaseHelper dataBase;
     EditText email, firstPassword, secondPassword, username, phone, address;
     RadioGroup genderGroup, firmGroup;
@@ -27,6 +30,18 @@ public class RegisterActivity extends AppCompatActivity {
         getSupportActionBar().hide();
         dataBase = DataBaseHelper.getHelper(this);
         registerButtonOnClickListener();
+        hideKeyboardOnClickListener();
+    }
+
+    public void hideKeyboardOnClickListener(){
+        layout = (RelativeLayout) findViewById(R.id.lay_reg);
+        layout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                InputMethodManager imm = (InputMethodManager) getSystemService(Activity.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
+            }
+        });
     }
 
     public void registerButtonOnClickListener() {
