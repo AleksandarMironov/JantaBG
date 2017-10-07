@@ -189,8 +189,8 @@
             android:layout_height="30sp"
             android:textStyle="bold"
             android:gravity="center"
-            android:buttonTint="#47ff14"
-            android:textColor="#47ff14"
+            android:buttonTint="#FFFFFF"
+            android:textColor="#FFFFFF"
             android:textSize="18dp"
             android:layout_toRightOf="@+id/radio_reg_female"
             android:text="Other" />
@@ -200,11 +200,11 @@
             android:background="@drawable/set_button_borders"
             android:layout_width="103dp"
             android:layout_height="30sp"
-            android:buttonTint="#2c14ff"
+            android:buttonTint="#FFFFFF"
             android:textStyle="bold"
             android:gravity="center"
             android:textSize="18dp"
-            android:textColor="#2c14ff"
+            android:textColor="#FFFFFF"
             android:layout_below="@+id/text_reg_address"
             android:text="Male"/>
 
@@ -216,8 +216,8 @@
             android:textStyle="bold"
             android:textSize="18dp"
             android:gravity="center"
-            android:buttonTint="#ff1fbc"
-            android:textColor="#ff1fbc"
+            android:buttonTint="#FFFFFF"
+            android:textColor="#FFFFFF"
             android:layout_below="@+id/text_reg_address"
             android:text="Female" />
 

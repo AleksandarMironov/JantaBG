@@ -1,12 +1,15 @@
 package com.example.ivan.jantabg.Fragments;
 
 import android.app.Fragment;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.ivan.jantabg.DataBaseHelper;
@@ -17,7 +20,8 @@ public class Fragment_User_Info extends Fragment{
     View view;
     DataBaseHelper db;
     String userMail;
-    TextView userName, email, city, gender, phone, ltd;
+    private TextView userName, email, city, gender, phone, ltd;
+    private Button updateInformation;
 
     @Nullable
     @Override
@@ -26,7 +30,29 @@ public class Fragment_User_Info extends Fragment{
         db = DataBaseHelper.getHelper(view.getContext());
         userMail = getArguments().getString("userMail");
         setInformation();
+        updateButtonClickListener();
         return view;
+    }
+
+    private void loadFragment(Fragment fragment) {
+        FragmentManager fm = getFragmentManager();
+        FragmentTransaction ft = fm.beginTransaction();
+        ft.replace(R.id.frMain,fragment);
+        ft.commit();
+    }
+
+    public void updateButtonClickListener() {
+        updateInformation = (Button)view.findViewById(R.id.user_info_update_btn);
+        updateInformation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Bundle bundle = new Bundle();
+                bundle.putString("userMail", userMail);
+                Fragment_Update_Information updateInfo = new Fragment_Update_Information();
+                updateInfo.setArguments(bundle);
+                loadFragment(updateInfo);
+            }
+        });
     }
 
     public void setInformation() {

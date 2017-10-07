@@ -25,6 +25,7 @@ import android.widget.Toast;
 
 import com.example.ivan.jantabg.Fragments.Fragment_Add_Offer;
 import com.example.ivan.jantabg.Fragments.Fragment_Home_Offers;
+import com.example.ivan.jantabg.Fragments.Fragment_Update_Information;
 import com.example.ivan.jantabg.Fragments.Fragment_User_Info;
 
 public class HomeActivity extends AppCompatActivity {
@@ -248,7 +249,15 @@ public class HomeActivity extends AppCompatActivity {
     public void onBackPressed() {
         if (drawerLayout.isDrawerOpen(Gravity.LEFT)) {
             drawerLayout.closeDrawer(Gravity.LEFT);
-        } else if (getFragmentManager().findFragmentById(R.id.frMain) instanceof Fragment_Home_Offers){
+        }
+//        else if(getFragmentManager().findFragmentById(R.id.frUpdate) instanceof Fragment_Update_Information) {
+//            Bundle bundle3 = new Bundle();
+//            bundle3.putString("userMail", userMail);
+//            Fragment_User_Info userInfo = new Fragment_User_Info();
+//            userInfo.setArguments(bundle3);
+//            loadFragment(userInfo);
+//        }
+        else if (getFragmentManager().findFragmentById(R.id.frMain) instanceof Fragment_Home_Offers){
             exit();
         } else {
             Bundle bundle2 = new Bundle();
