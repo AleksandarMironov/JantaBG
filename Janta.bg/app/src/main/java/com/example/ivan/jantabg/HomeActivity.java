@@ -37,7 +37,7 @@ public class HomeActivity extends AppCompatActivity {
     private Button btnAddOffer;
     private Button btnUserInfo;
     private Button btnLogOut;
-    private TextView usernameWelcome;
+    private TextView usernameWelcome, janta;
     private Button btnHome;
     private DrawerLayout drawerLayout;
 
@@ -61,6 +61,7 @@ public class HomeActivity extends AppCompatActivity {
         setOnUserInfoBtnClickListener();
         setOnLogOutBtnClickListener();
         setOnHomeBtnClickListener();
+        setOnJantaClickListener();
     }
 
     private void loadFragment(Fragment fragment) {
@@ -150,6 +151,24 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
     }
+
+    public void setOnJantaClickListener(){
+        janta = (TextView) findViewById(R.id.text_janta_main);
+        janta.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Bundle bundle2 = new Bundle();
+                bundle2.putString("userMail", userMail);
+                Fragment_Home_Offers homeFragment = new Fragment_Home_Offers();
+                homeFragment.setArguments(bundle2);
+                loadFragment(homeFragment);
+                if (drawerLayout.isDrawerOpen(Gravity.LEFT)) {
+                    drawerLayout.closeDrawer(Gravity.LEFT);
+                }
+            }
+        });
+    }
+
     public void setOnLogOutBtnClickListener(){
         btnLogOut = (Button) findViewById(R.id.btn_log_out);
         btnLogOut.setOnClickListener(new View.OnClickListener() {

@@ -23,6 +23,7 @@
            android:background="#ffffff"/>
 
        <TextView
+           android:id="@+id/text_janta_main"
            android:layout_width="230dp"
            android:layout_height="45dp"
            android:text="Janta.bg"
