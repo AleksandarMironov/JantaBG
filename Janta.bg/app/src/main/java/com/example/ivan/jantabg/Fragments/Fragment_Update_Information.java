@@ -1,5 +1,6 @@
 package com.example.ivan.jantabg.Fragments;
 
+import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
@@ -9,10 +10,13 @@ import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,6 +33,7 @@ public class Fragment_Update_Information extends Fragment {
     private EditText username, address, phone, password;
     private RadioGroup gender, ltd;
     private Button save;
+    private LinearLayout linear;
 
     @Nullable
     @Override
@@ -46,8 +51,21 @@ public class Fragment_Update_Information extends Fragment {
         save = (Button)view.findViewById(R.id.update_info_save_btn);
         setInformation();
         saveBtnListener();
+        hideKeyboardOnClickListener();
         return view;
     }
+
+    public void hideKeyboardOnClickListener(){
+        linear = (LinearLayout)view.findViewById(R.id.frUpdate);
+        linear.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                InputMethodManager imm = (InputMethodManager) view.getContext().getSystemService(Activity.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
+            }
+        });
+    }
+
 
     private void loadFragment(Fragment fragment) {
         FragmentManager fm = getFragmentManager();
