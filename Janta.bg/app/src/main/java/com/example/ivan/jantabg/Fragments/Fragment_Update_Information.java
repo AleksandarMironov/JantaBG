@@ -16,11 +16,11 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.ivan.jantabg.DataBaseHelper;
+import com.example.ivan.jantabg.HomeActivity;
 import com.example.ivan.jantabg.R;
 import com.example.ivan.jantabg.Utilities;
 
@@ -66,7 +66,6 @@ public class Fragment_Update_Information extends Fragment {
         });
     }
 
-
     private void loadFragment(Fragment fragment) {
         FragmentManager fm = getFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
@@ -109,9 +108,10 @@ public class Fragment_Update_Information extends Fragment {
                     if (temp) {
                         Toast.makeText(view.getContext(), "Successful update", Toast.LENGTH_SHORT).show();
                         Bundle bundle = new Bundle();
-                        bundle.putString("userMail", userMail);
+                        bundle.putString("userMail", mail);
                         Fragment_User_Info userInformation = new Fragment_User_Info();
                         userInformation.setArguments(bundle);
+                        HomeActivity.usernameWelcome.setText("Welcome, \n" + user);
                         loadFragment(userInformation);
                     } else {
                         Toast.makeText(view.getContext(), "Unsuccessful update", Toast.LENGTH_SHORT).show();

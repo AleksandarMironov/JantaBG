@@ -166,12 +166,8 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     }
 
     public boolean changeUserInfo(String email, String password, String name, String city, String gender, String phone, String ltd){
-
         SQLiteDatabase db = this.getWritableDatabase();
-        String myRawQuery = "SELECT * FROM " + TABLE_USERS + " WHERE " + T_USERS_COL_1 + " = \"" + email + "\";";
-        if (db.rawQuery(myRawQuery, null).getCount() != 0) {
-            return false;
-        }
+
         ContentValues contentValues = new ContentValues();
         contentValues.put(T_USERS_COL_1, email);
         contentValues.put(T_USERS_COL_2, password);
@@ -181,7 +177,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         contentValues.put(T_USERS_COL_6, phone);
         contentValues.put(T_USERS_COL_7, ltd);
 
-        long b = db.update(TABLE_USERS, contentValues, T_USERS_COL_1 + "=" + email, null);
+        long b = db.update(TABLE_USERS, contentValues,"email=?", new String[] {email});
 
         if (b == -1) {
             return false;

@@ -38,9 +38,10 @@ public class HomeActivity extends AppCompatActivity {
     private Button btnAddOffer;
     private Button btnUserInfo;
     private Button btnLogOut;
-    private TextView usernameWelcome, janta;
+    private TextView janta;
     private Button btnHome;
     private DrawerLayout drawerLayout;
+    public static TextView usernameWelcome;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
