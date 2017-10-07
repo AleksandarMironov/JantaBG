@@ -32,7 +32,7 @@ public class Fragment_Update_Information extends Fragment {
     private TextView email;
     private EditText username, address, phone, password;
     private RadioGroup gender, ltd;
-    private Button save;
+    private Button save, cancel;
     private LinearLayout linear;
 
     @Nullable
@@ -49,10 +49,25 @@ public class Fragment_Update_Information extends Fragment {
         ltd = (RadioGroup)view.findViewById(R.id.radioGroup_firm_update_info);
         password  = (EditText)view.findViewById(R.id.update_info_password_confirmation);
         save = (Button)view.findViewById(R.id.update_info_save_btn);
+        cancel = (Button)view.findViewById(R.id.update_info_cancel_btn);
         setInformation();
         saveBtnListener();
+        cancelBtnListener();
         hideKeyboardOnClickListener();
         return view;
+    }
+
+    public void cancelBtnListener() {
+        cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Bundle bundle = new Bundle();
+                bundle.putString("userMail", userMail);
+                Fragment_User_Info userInformation = new Fragment_User_Info();
+                userInformation.setArguments(bundle);
+                loadFragment(userInformation);
+            }
+        });
     }
 
     public void hideKeyboardOnClickListener(){

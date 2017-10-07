@@ -5,201 +5,248 @@
     android:gravity="center_horizontal"
     android:layout_height="match_parent">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="UPDATE PERSONAL INFORMATION"
-        android:layout_marginTop="10dp"
-        android:gravity="center"
-        android:textStyle="bold"
-        android:textSize="23sp"
-        android:fontFamily="serif"
-        android:textColor="#000000"/>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/update_info_mail"
-        android:layout_width="wrap_content"
-        android:textStyle="bold"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="Email: "
-        android:fontFamily="serif"
-        android:textSize="20sp"
-        android:textColor="#000000"/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textStyle="bold"
-        android:layout_marginTop="10dp"
-        android:textSize="20sp"
-        android:textColor="#000000"
-        android:fontFamily="serif"
-        android:text="Username"/>
-
-    <EditText
-        android:id="@+id/update_info_username"
-        android:gravity="center"
-        android:fontFamily="serif"
-        android:layout_width="300dp"
-        android:layout_height="30dp"
-        android:background="@drawable/set_button_borders_black"
-        />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:fontFamily="serif"
-        android:textStyle="bold"
-        android:textSize="20sp"
-        android:textColor="#000000"
-        android:text="Address"/>
-
-    <EditText
-        android:id="@+id/update_info_address"
-        android:gravity="center"
-        android:fontFamily="serif"
-        android:layout_width="300dp"
-        android:layout_height="45dp"
-        android:background="@drawable/set_button_borders_black"
-        />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="serif"
-        android:layout_marginTop="5dp"
-        android:textSize="20sp"
-        android:textColor="#000000"
-        android:textStyle="bold"
-        android:text="Phone"/>
-
-    <EditText
-        android:id="@+id/update_info_phone"
-        android:layout_width="300dp"
-        android:layout_height="30dp"
-        android:background="@drawable/set_button_borders_black"
-        android:fontFamily="serif"
-        android:gravity="center"
-        android:inputType="phone" />
-
-
-    <RadioGroup
-        android:layout_width="300sp"
-        android:layout_height="30sp"
-        android:orientation="horizontal"
-        android:id="@+id/radioGroup_gender_update_info"
-        android:layout_marginTop="10dp">
-
-
-        <RadioButton
-            android:id="@+id/radio_reg_other"
-            android:background="@drawable/set_button_borders_black"
-            android:layout_width="95dp"
-            android:layout_height="30sp"
-            android:fontFamily="serif"
-            android:textStyle="bold"
-            android:gravity="center"
-            android:buttonTint="#000000"
-            android:textColor="#000000"
-            android:textSize="18dp"
-            android:text="Other" />
-
-        <RadioButton
-            android:id="@+id/radio_reg_male"
-            android:background="@drawable/set_button_borders_black"
-            android:layout_width="100dp"
-            android:layout_height="30sp"
-            android:buttonTint="#000000"
-            android:textStyle="bold"
-            android:fontFamily="serif"
-            android:gravity="center"
-            android:textSize="18dp"
-            android:textColor="#000000"
-            android:text="Male"/>
-
-        <RadioButton
-            android:id="@+id/radio_reg_female"
-            android:background="@drawable/set_button_borders_black"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="30sp"
-            android:fontFamily="serif"
-            android:textStyle="bold"
-            android:textSize="18dp"
-            android:gravity="center"
-            android:buttonTint="#000000"
-            android:textColor="#000000"
-            android:text="Female" />
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
 
-    </RadioGroup>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:fontFamily="serif"
+                android:gravity="center"
+                android:text="UPDATE PERSONAL INFORMATION"
+                android:textColor="#000000"
+                android:textSize="23sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/update_info_mail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:fontFamily="serif"
+                android:text="Email: "
+                android:textColor="#000000"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:fontFamily="serif"
+                android:text="Username"
+                android:textColor="#000000"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/update_info_username"
+                android:layout_width="300dp"
+                android:layout_height="30dp"
+                android:background="@drawable/set_button_borders_black"
+                android:fontFamily="serif"
+                android:gravity="center" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:fontFamily="serif"
+                android:text="Address"
+                android:textColor="#000000"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/update_info_address"
+                android:layout_width="300dp"
+                android:layout_height="55dp"
+                android:background="@drawable/set_button_borders_black"
+                android:fontFamily="serif"
+                android:gravity="center" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:fontFamily="serif"
+                android:text="Phone"
+                android:textColor="#000000"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/update_info_phone"
+                android:layout_width="300dp"
+                android:layout_height="30dp"
+                android:background="@drawable/set_button_borders_black"
+                android:fontFamily="serif"
+                android:gravity="center"
+                android:inputType="phone" />
 
 
-    <RadioGroup
-        android:id="@+id/radioGroup_firm_update_info"
-        android:layout_width="300sp"
-        android:layout_height="30sp"
-        android:textStyle="bold"
-        android:gravity="center"
-        android:textColorHint="#000000"
-        android:textColor="#000000"
-        android:background="@drawable/set_button_borders"
-        android:orientation="horizontal"
-        android:layout_marginTop="10dp">
-
-        <RadioButton
-            android:id="@+id/radio_reg_private"
-            android:layout_width="162dp"
-            android:textSize="18dp"
-            android:layout_height="30sp"
-            android:fontFamily="serif"
-            android:textStyle="bold"
-            android:gravity="center"
-            android:textColorHint="#000000"
-            android:background="@drawable/set_button_borders_black"
-            android:textColor="#000000"
-            android:buttonTint="#000000"
-            android:text="Private Person" />
-
-        <RadioButton
-            android:id="@+id/radio_reg_ltd"
-            android:layout_width="310sp"
-            android:layout_height="30sp"
-            android:layout_weight="3.10"
-            android:background="@drawable/set_button_borders_black"
-            android:buttonTint="#000000"
-            android:gravity="center"
-            android:fontFamily="serif"
-            android:text="LTD"
-            android:textColor="#000000"
-            android:textSize="18dp"
-            android:textStyle="bold" />
-
-    </RadioGroup>
+            <RadioGroup
+                android:id="@+id/radioGroup_gender_update_info"
+                android:layout_width="300sp"
+                android:layout_height="30sp"
+                android:layout_marginTop="15dp"
+                android:orientation="horizontal">
 
 
-    <EditText
-        android:id="@+id/update_info_password_confirmation"
-        android:layout_width="300dp"
-        android:background="@drawable/set_button_borders_black"
-        android:layout_height="35sp"
-        android:textColor="#000000"
-        android:fontFamily="serif"
-        android:inputType="textPassword"
-        android:layout_marginTop="10dp"
-        android:hint="Confirm your password"
-        android:gravity="center"/>
+                <RadioButton
+                    android:id="@+id/radio_reg_other"
+                    android:layout_width="95dp"
+                    android:layout_height="30sp"
+                    android:background="@drawable/set_button_borders_black"
+                    android:buttonTint="#000000"
+                    android:fontFamily="serif"
+                    android:gravity="center"
+                    android:text="Other"
+                    android:textColor="#000000"
+                    android:textSize="18dp"
+                    android:textStyle="bold" />
 
-    <Button
-        android:id="@+id/update_info_save_btn"
-        android:layout_width="300dp"
-        android:fontFamily="serif"
-        android:background="@drawable/menu_button_design"
-        android:textStyle="bold"
-        android:textColor="#FFFFFF"
-        android:textSize="20sp"
-        android:layout_height="40dp"
-        android:layout_marginTop="10dp"
-        android:text="save"/>
+                <RadioButton
+                    android:id="@+id/radio_reg_male"
+                    android:layout_width="100dp"
+                    android:layout_height="30sp"
+                    android:background="@drawable/set_button_borders_black"
+                    android:buttonTint="#000000"
+                    android:fontFamily="serif"
+                    android:gravity="center"
+                    android:text="Male"
+                    android:textColor="#000000"
+                    android:textSize="18dp"
+                    android:textStyle="bold" />
+
+                <RadioButton
+                    android:id="@+id/radio_reg_female"
+                    android:layout_width="match_parent"
+                    android:layout_height="30sp"
+                    android:background="@drawable/set_button_borders_black"
+                    android:buttonTint="#000000"
+                    android:fontFamily="serif"
+                    android:gravity="center"
+                    android:text="Female"
+                    android:textColor="#000000"
+                    android:textSize="18dp"
+                    android:textStyle="bold" />
+
+            </RadioGroup>
+
+            <RadioGroup
+                android:id="@+id/radioGroup_firm_update_info"
+                android:layout_width="300sp"
+                android:layout_height="30sp"
+                android:layout_marginTop="15dp"
+                android:background="@drawable/set_button_borders"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:textColor="#000000"
+                android:textColorHint="#000000"
+                android:textStyle="bold">
+
+                <RadioButton
+                    android:id="@+id/radio_reg_private"
+                    android:layout_width="162dp"
+                    android:layout_height="30sp"
+                    android:background="@drawable/set_button_borders_black"
+                    android:buttonTint="#000000"
+                    android:fontFamily="serif"
+                    android:gravity="center"
+                    android:text="Private Person"
+                    android:textColor="#000000"
+                    android:textColorHint="#000000"
+                    android:textSize="18dp"
+                    android:textStyle="bold" />
+
+                <RadioButton
+                    android:id="@+id/radio_reg_ltd"
+                    android:layout_width="310sp"
+                    android:layout_height="30sp"
+                    android:layout_weight="3.10"
+                    android:background="@drawable/set_button_borders_black"
+                    android:buttonTint="#000000"
+                    android:fontFamily="serif"
+                    android:gravity="center"
+                    android:text="LTD"
+                    android:textColor="#000000"
+                    android:textSize="18dp"
+                    android:textStyle="bold" />
+
+            </RadioGroup>
+
+            <TextView
+                android:layout_width="310dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:textStyle="bold"
+                android:fontFamily="serif"
+                android:textColor="#000000"
+                android:gravity="center"
+                android:textSize="18dp"
+                android:text="Insert your password to confirm the changes"/>
+
+
+            <EditText
+                android:id="@+id/update_info_password_confirmation"
+                android:layout_width="300dp"
+                android:layout_height="35sp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/set_button_borders_black"
+                android:fontFamily="serif"
+                android:gravity="center"
+                android:hint="Your password"
+                android:inputType="textPassword"
+                android:textColor="#000000" />
+
+            <LinearLayout
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/update_info_cancel_btn"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_weight="1"
+                    android:layout_marginRight="3dp"
+                    android:background="@drawable/menu_button_design"
+                    android:fontFamily="serif"
+                    android:text="cancel"
+                    android:textColor="#FFFFFF"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <Button
+                    android:id="@+id/update_info_save_btn"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_weight="1"
+                    android:layout_marginLeft="3dp"
+                    android:background="@drawable/menu_button_design"
+                    android:fontFamily="serif"
+                    android:text="save"
+                    android:textColor="#FFFFFF"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+
+
+        </LinearLayout>
+
+
+    </ScrollView>
 
 </LinearLayout>
