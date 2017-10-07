@@ -1,13 +1,92 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
     tools:context="com.example.ivan.jantabg.HomeActivity">
 
 
     <TextView
-        android:id="@+id/testText"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:id="@+id/fragment_title_offerifno"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
 
-</FrameLayout>
+        android:fontFamily="serif"
+        android:textColor="#000000"
+        android:text="Offer Information"
+        android:layout_marginTop="20dp"
+        android:textSize="30sp"/>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:orientation="vertical"
+        android:gravity="left">
+
+        <TextView
+            android:id="@+id/fragment_offerby_offerifno"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="serif"
+            android:textColor="#000000"
+            android:text="Offer by: "
+            android:layout_marginLeft="35dp"
+            android:gravity="center"
+            android:textSize="23sp" />
+
+        <TextView
+            android:id="@+id/fragment_titleoffer_offerifno"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="35dp"
+            android:layout_marginTop="5dp"
+            android:fontFamily="serif"
+            android:gravity="center"
+            android:text="Title: "
+            android:textColor="#000000"
+            android:textSize="23sp" />
+
+        <TextView
+        android:id="@+id/fragment_descroffer_offerifno"
+        android:fontFamily="serif"
+        android:textColor="#000000"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+        android:text="Description: "
+        android:layout_marginLeft="35dp"
+        android:gravity="center"
+        android:textSize="23sp" />
+
+        <TextView
+        android:id="@+id/fragment_priceoffer_offerifno"
+            android:layout_marginTop="5dp"
+        android:fontFamily="serif"
+        android:textColor="#000000"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Price: "
+        android:layout_marginLeft="35dp"
+        android:gravity="center"
+        android:textSize="23sp" />
+
+        <ImageView
+        android:id="@+id/image_view_offer_info"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:textSize="23sp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginTop="10dp"/>
+    </LinearLayout>
+
+
+
+
+
+
+</LinearLayout>
