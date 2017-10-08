@@ -105,7 +105,7 @@ public class Fragment_Add_Offer extends Fragment{
                         description.setError("Wrong input");
                     }
                     if(!Utilities.checkString(priceStr)){
-                        price.setError("Wrong input");
+                        price.setError("Wrong input. Max price 999 999.99");
                     }
                 }
 

@@ -188,4 +188,11 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     public void create(){
         SQLiteDatabase db = this.getWritableDatabase(); ///need this to create base ?! stupid!
     }
+
+
+    public Cursor getOffersReversed(){
+        SQLiteDatabase db = this.getReadableDatabase();
+        String myRawQuery = "SELECT " + T_OFFER_COL_1 + ", " + T_OFFER_COL_2 + ", " + T_OFFER_COL_5 + ", " + T_OFFER_COL_3 +" FROM " + TABLE_OFFER + " ORDER BY ID DESC;";
+        return db.rawQuery(myRawQuery, null);
+    }
 }

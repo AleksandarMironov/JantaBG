@@ -35,7 +35,8 @@ public class Fragment_Home_Offers extends Fragment implements MyRecyclerViewAdap
         userMail = getArguments().getString("userMail");
 
         // data to populate the RecyclerView with
-        Cursor offersData = db.getOffers(); //id title price
+        Cursor offersData = db.getOffersReversed(); //id title price
+
         //set up the RecyclerView
         RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.my_recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
