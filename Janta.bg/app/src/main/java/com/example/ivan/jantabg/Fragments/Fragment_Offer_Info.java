@@ -3,15 +3,18 @@ package com.example.ivan.jantabg.Fragments;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -29,6 +32,7 @@ public class Fragment_Offer_Info extends Fragment {
      String offerId;
     private TextView offerBy, title, descr, price;
     private ImageView image;
+    private ImageButton callSeller;
 
     @Nullable
     @Override
@@ -38,7 +42,23 @@ public class Fragment_Offer_Info extends Fragment {
         userMail = getArguments().getString("userMail");
         offerId = getArguments().getString("offerId");
         setInformation();
+        callSeller();
         return view;
+    }
+
+    public void callSeller() {
+        Cursor cursorUser = db.getUserData(userMail);
+        cursorUser.moveToFirst();
+        final String phone = cursorUser.getString(5);
+        callSeller = (ImageButton)view.findViewById(R.id.fragment_callbtn_offerinfo);
+        callSeller.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent callIntent = new Intent(Intent.ACTION_CALL);
+                callIntent.setData(Uri.parse("tel:" + phone));
+                startActivity(callIntent);
+            }
+        });
     }
 
     public void setInformation() {
@@ -57,23 +77,23 @@ public class Fragment_Offer_Info extends Fragment {
         String userEmail = cursorUser.getString(0);
         String userName = cursorUser.getString(2);
         String userAddres = cursorUser.getString(3);
-        String userPhone = cursorUser.getString(5);
+        final String userPhone = cursorUser.getString(5);
 
         String offerTitle = cursorOffer.getString(1);
         String offerDescription = cursorOffer.getString(3);
         String offerPrice = cursorOffer.getString(4);
         String offerImgPath = cursorOffer.getString(2);
 
-//        Cursor loggedUser = db.getUserData(userMail);
-//        loggedUser.moveToFirst();
-//
-//        String loggedUserMail = loggedUser.getString(0);
-//
-//        if (loggedUserMail.equals(userEmail)) {
-//            offerBy.setText("You");
-//        } else {
-//            offerBy.setText(userName);
-//        }
+        Cursor loggedUser = db.getUserData(userMail);
+        loggedUser.moveToFirst();
+
+        String loggedUserMail = loggedUser.getString(0);
+
+        if (loggedUserMail.equals(userEmail)) {
+            offerBy.setText(offerBy.getText() + "You");
+        } else {
+            offerBy.setText(offerBy.getText() + userName);
+        }
         title.setText(title.getText() + offerTitle);
 
         StringBuilder sb = new StringBuilder();

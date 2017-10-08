@@ -48,6 +48,7 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_offers);
         drawerLayout = (DrawerLayout)findViewById(R.id.dlContent);
+        userMail = getIntent().getExtras().getString("userMail");
         Bundle bundle = new Bundle();
         bundle.putString("userMail", userMail);
         Fragment_Home_Offers homeFragment = new Fragment_Home_Offers();
@@ -55,7 +56,6 @@ public class HomeActivity extends AppCompatActivity {
         loadFragment(homeFragment);
         getSupportActionBar().hide();
         db = DataBaseHelper.getHelper(this);
-        userMail = getIntent().getExtras().getString("userMail");
         verifyStoragePermissions(this);
         drawerDropMenucreator(); //metod menu
         setOnQuitBtnClickListener();

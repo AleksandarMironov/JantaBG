@@ -6,18 +6,15 @@
     android:gravity="center_horizontal"
     tools:context="com.example.ivan.jantabg.HomeActivity">
 
-
-    <TextView
-        android:id="@+id/fragment_title_offerifno"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-
-        android:fontFamily="serif"
-        android:textColor="#000000"
-        android:text="Offer Information"
-        android:layout_marginTop="20dp"
-        android:textSize="30sp"/>
-
+        <TextView
+            android:id="@+id/fragment_title_offerifno"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="serif"
+            android:textColor="#000000"
+            android:text="Offer Information"
+            android:layout_marginTop="20dp"
+            android:textSize="30sp"/>
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -35,6 +32,18 @@
             android:layout_marginLeft="35dp"
             android:gravity="center"
             android:textSize="23sp" />
+
+        <ImageButton
+            android:id="@+id/fragment_callbtn_offerinfo"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@mipmap/ic_launcher"
+            android:layout_marginRight="14dp"
+            android:layout_marginBottom="5dp"
+            android:layout_marginEnd="14dp"
+            android:layout_above="@+id/fragment_descroffer_offerifno"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
 
         <TextView
             android:id="@+id/fragment_titleoffer_offerifno"
@@ -88,6 +97,10 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:textSize="23sp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
         android:layout_alignTop="@+id/fragment_priceoffer_offerifno"
         android:layout_centerHorizontal="true" />
 

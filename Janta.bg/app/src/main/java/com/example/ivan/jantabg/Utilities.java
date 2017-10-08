@@ -1,9 +1,12 @@
 package com.example.ivan.jantabg;
 
 
+import android.app.Fragment;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.text.TextUtils;
 
-public class Utilities {
+public class Utilities{
     public static boolean checkString(String str){
         if (TextUtils.isEmpty(str) ||  str.matches("[&\\;'\"]")){ //bad simbols for database
             return false;
