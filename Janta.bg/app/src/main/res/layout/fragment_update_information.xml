@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:id="@+id/frUpdate"
     android:gravity="center_horizontal"
     android:layout_height="match_parent">
 
@@ -12,6 +11,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:id="@+id/frUpdate"
             android:gravity="center_horizontal"
             android:orientation="vertical">
 
@@ -188,12 +188,12 @@
                 android:layout_width="310dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
-                android:textStyle="bold"
                 android:fontFamily="serif"
-                android:textColor="#000000"
                 android:gravity="center"
+                android:text="Insert your password to confirm the changes"
+                android:textColor="#000000"
                 android:textSize="18dp"
-                android:text="Insert your password to confirm the changes"/>
+                android:textStyle="bold" />
 
 
             <EditText
@@ -211,15 +211,16 @@
             <LinearLayout
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="3dp"
                 android:orientation="horizontal">
 
                 <Button
                     android:id="@+id/update_info_cancel_btn"
                     android:layout_width="0dp"
                     android:layout_height="40dp"
-                    android:layout_marginTop="15dp"
-                    android:layout_weight="1"
                     android:layout_marginRight="3dp"
+                    android:layout_weight="1"
                     android:background="@drawable/menu_button_design"
                     android:fontFamily="serif"
                     android:text="cancel"
@@ -231,9 +232,8 @@
                     android:id="@+id/update_info_save_btn"
                     android:layout_width="0dp"
                     android:layout_height="40dp"
-                    android:layout_marginTop="15dp"
-                    android:layout_weight="1"
                     android:layout_marginLeft="3dp"
+                    android:layout_weight="1"
                     android:background="@drawable/menu_button_design"
                     android:fontFamily="serif"
                     android:text="save"
@@ -241,7 +241,6 @@
                     android:textSize="20sp"
                     android:textStyle="bold" />
             </LinearLayout>
-
 
 
         </LinearLayout>

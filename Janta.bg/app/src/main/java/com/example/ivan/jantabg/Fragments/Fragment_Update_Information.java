@@ -57,6 +57,17 @@ public class Fragment_Update_Information extends Fragment {
         return view;
     }
 
+    public void hideKeyboardOnClickListener(){
+        linear = (LinearLayout)view.findViewById(R.id.frUpdate);
+        linear.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                InputMethodManager imm = (InputMethodManager) view.getContext().getSystemService(Activity.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
+            }
+        });
+    }
+
     public void cancelBtnListener() {
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -66,17 +77,6 @@ public class Fragment_Update_Information extends Fragment {
                 Fragment_User_Info userInformation = new Fragment_User_Info();
                 userInformation.setArguments(bundle);
                 loadFragment(userInformation);
-            }
-        });
-    }
-
-    public void hideKeyboardOnClickListener(){
-        linear = (LinearLayout)view.findViewById(R.id.frUpdate);
-        linear.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                InputMethodManager imm = (InputMethodManager) view.getContext().getSystemService(Activity.INPUT_METHOD_SERVICE);
-                imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
             }
         });
     }
