@@ -70,6 +70,8 @@ public class LoginActivity extends AppCompatActivity {
 
                     Intent intent = new Intent("com.example.ivan.jantabg.HomeActivity");//goes to offersActivity
                     intent.putExtra("userMail", mail);
+                    InputMethodManager imm = (InputMethodManager) getSystemService(Activity.INPUT_METHOD_SERVICE);
+                    imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
                     startActivity(intent);
                     finish();
 
@@ -106,6 +108,8 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent("com.example.ivan.jantabg.RegisterActivity");
+                InputMethodManager imm = (InputMethodManager) getSystemService(Activity.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
                 startActivityForResult(intent, 13);
 
             }

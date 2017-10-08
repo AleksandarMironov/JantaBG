@@ -92,6 +92,8 @@ public class Fragment_Add_Offer extends Fragment{
                         bundle.putString("userMail", userMail);
                         Fragment_Home_Offers homeFragment = new Fragment_Home_Offers();
                         homeFragment.setArguments(bundle);
+                        InputMethodManager imm = (InputMethodManager) view.getContext().getSystemService(Activity.INPUT_METHOD_SERVICE);
+                        imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
                         loadFragment(homeFragment);
                         Toast.makeText(view.getContext(), "Offer added.", Toast.LENGTH_SHORT).show();
                     } else {

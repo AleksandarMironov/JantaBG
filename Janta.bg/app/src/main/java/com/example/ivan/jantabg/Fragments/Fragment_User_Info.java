@@ -1,5 +1,6 @@
 package com.example.ivan.jantabg.Fragments;
 
+import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
@@ -9,6 +10,7 @@ import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -50,6 +52,8 @@ public class Fragment_User_Info extends Fragment{
                 bundle.putString("userMail", userMail);
                 Fragment_Update_Information updateInfo = new Fragment_Update_Information();
                 updateInfo.setArguments(bundle);
+                InputMethodManager imm = (InputMethodManager) view.getContext().getSystemService(Activity.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
                 loadFragment(updateInfo);
             }
         });

@@ -104,6 +104,8 @@ public class RegisterActivity extends AppCompatActivity {
                         Intent returnIntent = new Intent();
                         returnIntent.putExtra("userMail",email.getText().toString());
                         returnIntent.putExtra("pass", firstPassword.getText().toString());
+                        InputMethodManager imm = (InputMethodManager) getSystemService(Activity.INPUT_METHOD_SERVICE);
+                        imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
                         setResult(Activity.RESULT_OK,returnIntent);
                         finish();
                     } else {

@@ -1,5 +1,6 @@
 package com.example.ivan.jantabg.Fragments;
 
+import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
@@ -14,6 +15,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
 
 import com.example.ivan.jantabg.DataBaseHelper;
@@ -53,6 +55,8 @@ public class Fragment_Home_Offers extends Fragment implements MyRecyclerViewAdap
         bundle.putString("offerId", adapter.getItem(position));
         Fragment_Offer_Info offerInfo = new Fragment_Offer_Info();
         offerInfo.setArguments(bundle);
+        InputMethodManager imm = (InputMethodManager) view.getContext().getSystemService(Activity.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
         loadFragment(offerInfo);
         //Toast.makeText(this, "You clicked offer id " + adapter.getItem(position) + " on row number " + position, Toast.LENGTH_SHORT).show();
         /*Intent intent = new Intent(""); <--- add offer details page here

@@ -76,6 +76,8 @@ public class Fragment_Update_Information extends Fragment {
                 bundle.putString("userMail", userMail);
                 Fragment_User_Info userInformation = new Fragment_User_Info();
                 userInformation.setArguments(bundle);
+                InputMethodManager imm = (InputMethodManager) view.getContext().getSystemService(Activity.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
                 loadFragment(userInformation);
             }
         });
