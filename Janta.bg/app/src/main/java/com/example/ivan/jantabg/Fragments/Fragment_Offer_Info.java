@@ -98,9 +98,6 @@ public class Fragment_Offer_Info extends Fragment {
 
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < offerDescription.length(); i++) {
-            if (i == 23) {
-                sb.append("\n");
-            }
             sb.append(offerDescription.charAt(i));
         }
             descr.setText(descr.getText() + sb.toString());
