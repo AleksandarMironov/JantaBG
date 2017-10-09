@@ -151,7 +151,8 @@
             android:layout_toEndOf="@+id/radio_reg_ltd"
             android:buttonTint="#FFFFFF"
             android:layout_toRightOf="@+id/radio_reg_ltd"
-            android:text="Private Person" />
+            android:text="Private Person"
+            android:checked="true"/>
 
         <RadioButton
             android:id="@+id/radio_reg_ltd"
@@ -193,7 +194,8 @@
             android:textColor="#FFFFFF"
             android:textSize="18dp"
             android:layout_toRightOf="@+id/radio_reg_female"
-            android:text="Other" />
+            android:text="Other"
+            android:checked="true"/>
 
         <RadioButton
             android:id="@+id/radio_reg_male"

@@ -102,6 +102,25 @@ public class HomeActivity extends AppCompatActivity {
         }
     }
     /////////////////////////
+    // Call Permissions
+    private static final int REQUEST_CALL = 2;
+    private static String[] PERMISSIONS_CALL = {
+            Manifest.permission.CALL_PHONE
+    };
+    public static void verifyCallPermissions(Activity activity) {
+        // Check if we have write permission
+        int permission = ActivityCompat.checkSelfPermission(activity, Manifest.permission.CALL_PHONE);
+
+        if (permission != PackageManager.PERMISSION_GRANTED) {
+            // We don't have permission so prompt the user
+            ActivityCompat.requestPermissions(
+                    activity,
+                    PERMISSIONS_CALL,
+                    REQUEST_CALL
+            );
+        }
+    }
+    /////////////////////////
 
     public void drawerDropMenucreator() {
         btnAction = (ImageButton)findViewById(R.id.btnAction);
