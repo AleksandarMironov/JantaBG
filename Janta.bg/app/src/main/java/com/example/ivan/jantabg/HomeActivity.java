@@ -57,6 +57,7 @@ public class HomeActivity extends AppCompatActivity {
         getSupportActionBar().hide();
         db = DataBaseHelper.getHelper(this);
         verifyStoragePermissions(this);
+        verifyCallPermissions(this);
         drawerDropMenucreator(); //metod menu
         setOnQuitBtnClickListener();
         setOnAddOfferBtnClickListener();
